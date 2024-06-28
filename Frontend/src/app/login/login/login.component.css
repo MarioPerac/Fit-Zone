@@ -10,3 +10,12 @@
     flex-direction: column;
     
 }
+
+mat-card-content {
+    padding: 25px; /* Padding inside the card content */
+  }
+
+button[mat-flat-button]{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
