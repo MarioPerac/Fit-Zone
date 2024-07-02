@@ -15,6 +15,11 @@ const routes: Routes = [
     path: "new-program",
     loadChildren: () => import('./new-program/new-program.module').then(mod => mod.NewProgramModule)
   }
+  ,
+  {
+    path: "home",
+    loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule)
+  }
 ];
 
 
