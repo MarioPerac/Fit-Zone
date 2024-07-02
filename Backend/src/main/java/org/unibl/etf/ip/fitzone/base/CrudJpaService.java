@@ -55,20 +55,11 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable>  
         if(!jpaRepository.existsById(id)){
             throw new NotFoundException();
         }
-        Optional<E> optionalEntity = jpaRepository.findById(id);
-
-        E entity = optionalEntity.get();
-
-        // Update specific fields of the entity from the DTO
-        modelMapper.map(object, entity);
-
-        // Save the updated entity
+        E entity = modelMapper.map(object, entityClass);
+        entity.setId(id);
         entity = jpaRepository.saveAndFlush(entity);
-
-        // Refresh the entity from the entity manager
         entityManager.refresh(entity);
 
-        // Map the updated entity to the result DTO class and return it
         return modelMapper.map(entity, resultDtoClass);
     }
     @Override
