@@ -6,4 +6,6 @@ import org.unibl.etf.ip.fitzone.models.entites.UserEntity;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, String> {
+
+    UserEntity findByUsername(String username);
 }
