@@ -10,7 +10,6 @@ import org.unibl.etf.ip.fitzone.exceptions.NotFoundException;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -44,7 +43,8 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable>  
     @Override
     public <T,U> T insert(U object, Class<T> resultDtoClass){
         E entity = modelMapper.map(object, entityClass);
-        entity.setId(null);
+        if(entity.getId() instanceof Integer)
+            entity.setId(null);
         entity = jpaRepository.saveAndFlush(entity);
         entityManager.refresh(entity);
         return modelMapper.map(entity, resultDtoClass);
