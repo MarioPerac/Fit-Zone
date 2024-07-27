@@ -1,5 +1,3 @@
-import { Time } from "@angular/common";
-
 export class Program {
     id: number;
     name: string;
@@ -9,7 +7,7 @@ export class Program {
     price: number;
     level: string;
     duration: number;
-    image: string;
+    image: Blob;
 
     constructor(
         id: number,
@@ -20,7 +18,7 @@ export class Program {
         price: number,
         level: string,
         duration: number,
-        image: string
+        image: Blob
     ) {
         this.id = id;
         this.name = name;

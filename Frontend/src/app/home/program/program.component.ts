@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Program } from '../../models/program';
+import { Program } from '../../models/program.model';
 
 @Component({
   selector: 'app-program',
