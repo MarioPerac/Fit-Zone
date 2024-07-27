@@ -23,7 +23,7 @@ public abstract class CrudController <ID extends Serializable, REQ, RESP> {
     }
 
 
-    @GetMapping("/")
+    @GetMapping
     public List<RESP> findAll(){
         return crudService.findAll(respClass);
     }
@@ -33,7 +33,7 @@ public abstract class CrudController <ID extends Serializable, REQ, RESP> {
         return crudService.findById(id, respClass);
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RESP insert(@RequestBody REQ object){
         return crudService.insert(object, respClass);
