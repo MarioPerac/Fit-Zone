@@ -2,15 +2,42 @@ package org.unibl.etf.ip.fitzone.models.entites;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@jakarta.persistence.Table(name = "program", schema = "fit_zone", catalog = "")
+@Table(name = "program", schema = "fit_zone", catalog = "")
 public class ProgramEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "id")
+    @Column(name = "id")
     private Integer id;
+    @Basic
+    @Column(name = "name")
+    private String name;
+    @Basic
+    @Column(name = "descritpion")
+    private String descritpion;
+    @Basic
+    @Column(name = "location")
+    private String location;
+    @Basic
+    @Column(name = "price")
+    private Integer price;
+    @Basic
+    @Column(name = "level")
+    private String level;
+    @Basic
+    @Column(name = "duration")
+    private Integer duration;
+    @OneToMany(mappedBy = "programId")
+    private Collection<ImageEntity> imageEntities;
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    private CategoryEntity categoryEntity;
+    @OneToOne
+    @JoinColumn(name = "program_image_id", referencedColumnName = "id", nullable = false)
+    private ImageEntity programImageEntity;
 
     public Integer getId() {
         return id;
@@ -20,10 +47,6 @@ public class ProgramEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
-    private String name;
-
     public String getName() {
         return name;
     }
@@ -31,10 +54,6 @@ public class ProgramEntity {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Basic
-    @Column(name = "descritpion")
-    private String descritpion;
 
     public String getDescritpion() {
         return descritpion;
@@ -44,10 +63,6 @@ public class ProgramEntity {
         this.descritpion = descritpion;
     }
 
-    @Basic
-    @Column(name = "location")
-    private String location;
-
     public String getLocation() {
         return location;
     }
@@ -55,23 +70,6 @@ public class ProgramEntity {
     public void setLocation(String location) {
         this.location = location;
     }
-
-    @Basic
-    @Column(name = "category_id")
-    private Integer categoryId;
-
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    @Basic
-    @Column(name = "price")
-    private Integer price;
-
     public Integer getPrice() {
         return price;
     }
@@ -79,10 +77,6 @@ public class ProgramEntity {
     public void setPrice(Integer price) {
         this.price = price;
     }
-
-    @Basic
-    @Column(name = "level")
-    private String level;
 
     public String getLevel() {
         return level;
@@ -92,10 +86,6 @@ public class ProgramEntity {
         this.level = level;
     }
 
-    @Basic
-    @Column(name = "duration")
-    private Integer duration;
-
     public Integer getDuration() {
         return duration;
     }
@@ -104,28 +94,33 @@ public class ProgramEntity {
         this.duration = duration;
     }
 
-    @Basic
-    @Column(name = "program_image_id")
-    private Integer programImageId;
-
-    public Integer getProgramImageId() {
-        return programImageId;
-    }
-
-    public void setProgramImageId(Integer programImageId) {
-        this.programImageId = programImageId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProgramEntity that = (ProgramEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(descritpion, that.descritpion) && Objects.equals(location, that.location) && Objects.equals(categoryId, that.categoryId) && Objects.equals(price, that.price) && Objects.equals(level, that.level) && Objects.equals(duration, that.duration) && Objects.equals(programImageId, that.programImageId);
-    }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, descritpion, location, categoryId, price, level, duration, programImageId);
+        return Objects.hash(id, name, descritpion, location,  price, level, duration);
+    }
+
+    public Collection<ImageEntity> getImageEntities() {
+        return imageEntities;
+    }
+
+    public void setImageEntities(Collection<ImageEntity> imagesById) {
+        this.imageEntities = imagesById;
+    }
+
+    public CategoryEntity getCategoryEntity() {
+        return categoryEntity;
+    }
+
+    public void setCategoryEntity(CategoryEntity categoryByCategoryId) {
+        this.categoryEntity = categoryByCategoryId;
+    }
+
+    public ImageEntity getProgramImageEntity() {
+        return programImageEntity;
+    }
+
+    public void setProgramImageEntity(ImageEntity imageByProgramImageId) {
+        this.programImageEntity = imageByProgramImageId;
     }
 }

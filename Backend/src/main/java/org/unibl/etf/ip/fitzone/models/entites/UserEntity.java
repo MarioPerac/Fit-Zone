@@ -6,11 +6,30 @@ import org.unibl.etf.ip.fitzone.base.BaseEntity;
 import java.util.Objects;
 
 @Entity
-@jakarta.persistence.Table(name = "user", schema = "fit_zone", catalog = "")
+@Table(name = "user", schema = "fit_zone", catalog = "")
 public class UserEntity implements BaseEntity<String> {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "username")
+    @Column(name = "username")
     private String username;
+    @Basic
+    @Column(name = "name")
+    private String name;
+    @Basic
+    @Column(name = "surname")
+    private String surname;
+    @Basic
+    @Column(name = "password")
+    private String password;
+    @Basic
+    @Column(name = "mail")
+    private String mail;
+    @Basic
+    @Column(name = "avatar")
+    private String avatar;
+    @Basic
+    @Column(name = "activated")
+    private Byte activated;
 
     public String getUsername() {
         return username;
@@ -20,10 +39,6 @@ public class UserEntity implements BaseEntity<String> {
         this.username = username;
     }
 
-    @Basic
-    @Column(name = "name")
-    private String name;
-
     public String getName() {
         return name;
     }
@@ -31,10 +46,6 @@ public class UserEntity implements BaseEntity<String> {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Basic
-    @Column(name = "surname")
-    private String surname;
 
     public String getSurname() {
         return surname;
@@ -44,10 +55,6 @@ public class UserEntity implements BaseEntity<String> {
         this.surname = surname;
     }
 
-    @Basic
-    @Column(name = "password")
-    private String password;
-
     public String getPassword() {
         return password;
     }
@@ -55,10 +62,6 @@ public class UserEntity implements BaseEntity<String> {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    @Basic
-    @Column(name = "mail")
-    private String mail;
 
     public String getMail() {
         return mail;
@@ -68,10 +71,6 @@ public class UserEntity implements BaseEntity<String> {
         this.mail = mail;
     }
 
-    @Basic
-    @Column(name = "avatar")
-    private String avatar;
-
     public String getAvatar() {
         return avatar;
     }
@@ -80,15 +79,11 @@ public class UserEntity implements BaseEntity<String> {
         this.avatar = avatar;
     }
 
-    @Basic
-    @Column(name = "activated")
-    private boolean activated = false;
-
-    public boolean getActivated() {
+    public Byte getActivated() {
         return activated;
     }
 
-    public void setActivated(boolean activated) {
+    public void setActivated(Byte activated) {
         this.activated = activated;
     }
 
@@ -107,11 +102,11 @@ public class UserEntity implements BaseEntity<String> {
 
     @Override
     public void setId(String object) {
-        setUsername(object);
+        this.username = object;
     }
 
     @Override
     public String getId() {
-        return username;
+        return this.username;
     }
 }

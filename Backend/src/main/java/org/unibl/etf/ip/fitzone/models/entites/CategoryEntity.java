@@ -6,12 +6,18 @@ import org.unibl.etf.ip.fitzone.base.BaseEntity;
 import java.util.Objects;
 
 @Entity
-@jakarta.persistence.Table(name = "category", schema = "fit_zone", catalog = "")
+@Table(name = "category", schema = "fit_zone", catalog = "")
 public class CategoryEntity implements BaseEntity<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "id")
+    @Column(name = "id")
     private Integer id;
+    @Basic
+    @Column(name = "name")
+    private String name;
+    @Basic
+    @Column(name = "attribute")
+    private String attribute;
 
     public Integer getId() {
         return id;
@@ -21,10 +27,6 @@ public class CategoryEntity implements BaseEntity<Integer> {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
-    private String name;
-
     public String getName() {
         return name;
     }
@@ -32,10 +34,6 @@ public class CategoryEntity implements BaseEntity<Integer> {
     public void setName(String name) {
         this.name = name;
     }
-
-    @Basic
-    @Column(name = "attribute")
-    private String attribute;
 
     public String getAttribute() {
         return attribute;

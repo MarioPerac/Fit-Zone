@@ -5,12 +5,21 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@jakarta.persistence.Table(name = "admin", schema = "fit_zone", catalog = "")
+@Table(name = "admin", schema = "fit_zone", catalog = "")
 public class AdminEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "username")
+    @Column(name = "username")
     private String username;
+    @Basic
+    @Column(name = "name")
+    private String name;
+    @Basic
+    @Column(name = "surname")
+    private String surname;
+    @Basic
+    @Column(name = "password")
+    private String password;
 
     public String getUsername() {
         return username;
@@ -20,10 +29,6 @@ public class AdminEntity {
         this.username = username;
     }
 
-    @Basic
-    @Column(name = "name")
-    private String name;
-
     public String getName() {
         return name;
     }
@@ -32,10 +37,6 @@ public class AdminEntity {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "surname")
-    private String surname;
-
     public String getSurname() {
         return surname;
     }
@@ -43,10 +44,6 @@ public class AdminEntity {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
-    @Basic
-    @Column(name = "password")
-    private String password;
 
     public String getPassword() {
         return password;
