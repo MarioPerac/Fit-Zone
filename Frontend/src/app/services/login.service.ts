@@ -16,7 +16,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
 
-  public login(login: Login): Observable<boolean> {
-    return this.http.post<boolean>(this.apiUrl, login);
+  public login(login: Login): Observable<User> {
+    return this.http.post<User>(this.apiUrl, login);
   }
 }

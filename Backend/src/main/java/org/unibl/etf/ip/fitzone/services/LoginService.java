@@ -1,6 +1,9 @@
 package org.unibl.etf.ip.fitzone.services;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
+import org.unibl.etf.ip.fitzone.models.dto.User;
 import org.unibl.etf.ip.fitzone.models.entites.UserEntity;
 import org.unibl.etf.ip.fitzone.repositories.UserRepository;
 
@@ -8,17 +11,23 @@ import org.unibl.etf.ip.fitzone.repositories.UserRepository;
 public class LoginService {
 
     private UserRepository userRepository;
+    private ModelMapper modelMapper;
 
-    public LoginService(UserRepository userRepository){
+    public LoginService(UserRepository userRepository, ModelMapper modelMapper){
         this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
     }
 
-    public boolean login(String username, String password){
+    public User login(String username, String password){
         UserEntity userEntity = userRepository.findByUsername(username);
 
         if(userEntity == null)
-            return false;
+            return null;
 
-        return userEntity.getPassword().equals(password);
+        if(userEntity.getPassword().equals(password)){
+            return modelMapper.map(userEntity, User.class);
+        }
+
+        return null;
     }
 }

@@ -10,11 +10,10 @@ export class GuardService {
   constructor(private loginService: LoginService, private router: Router) { }
 
   canActivate(): boolean {
-
     if (this.loginService.signedIn) {
       return true;
     } else {
-      this.router.navigate(['']);
+      this.router.navigate(['login']);
       return false;
     }
   }
