@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../models/user.model';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SignUpService } from '../../services/sign-up.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,9 +14,9 @@ export class SignupComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({});
   public avatars: { value: string, imageUrl: string }[] = [];
-  public selectedAvatar: { value: string, imageUrl: string } | undefined;
+  public selectedAvatar!: { value: string, imageUrl: string };
 
-  constructor(private fromBuilder: FormBuilder) { }
+  constructor(private fromBuilder: FormBuilder, private signUpService: SignUpService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.avatars = [
@@ -36,7 +40,36 @@ export class SignupComponent implements OnInit {
   }
 
   public signup(form: any) {
-    //TO DO
+    const user = new User(
+      this.form.value.name,
+      this.form.value.surname,
+      this.form.value.username,
+      this.form.value.password,
+      this.form.value.email,
+      this.selectedAvatar.imageUrl,
+      false
+    );
+
+    this.signUpService.signUp(user).subscribe({
+      next: (success: boolean) => {
+        if (success) {
+          this.router.navigate(['login']);
+          this.snackBar.open('Successful Sign In', undefined, {
+            duration: 2000
+          });
+        } else {
+          this.snackBar.open('Unsuccessful Sign In', undefined, {
+            duration: 2000
+          });
+        }
+      },
+      error: (err) => {
+        console.error('Sign up error', err);
+        this.snackBar.open('Error during sign up', undefined, {
+          duration: 2000
+        });
+      }
+    });
 
   }
 
