@@ -20,7 +20,6 @@ public class SignUpController {
 
     @PostMapping
     public ResponseEntity<Boolean> signUp(@RequestBody UserRequest userRequest){
-    System.out.println(userRequest.toString());
         return signUpService.signUp(userRequest) ? new ResponseEntity<>(HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 

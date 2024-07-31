@@ -10,13 +10,8 @@ import org.unibl.etf.ip.fitzone.repositories.UserRepository;
 @Service
 public class UserService extends CrudJpaService<UserEntity, String> {
 
-    private final UserRepository userRepository;
-    private final ModelMapper modelMapper;
-
     public UserService(UserRepository userRepository, ModelMapper modelMapper) {
         super(userRepository, UserEntity.class, modelMapper);
 
-        this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
     }
 }

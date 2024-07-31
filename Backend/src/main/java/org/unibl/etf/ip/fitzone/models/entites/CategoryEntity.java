@@ -1,12 +1,13 @@
 package org.unibl.etf.ip.fitzone.models.entites;
 
 import jakarta.persistence.*;
+import org.unibl.etf.ip.fitzone.base.BaseEntity;
 
 import java.util.Objects;
 
 @Entity
 @jakarta.persistence.Table(name = "category", schema = "fit_zone", catalog = "")
-public class CategoryEntity {
+public class CategoryEntity implements BaseEntity<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @jakarta.persistence.Column(name = "id")

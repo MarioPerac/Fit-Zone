@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable>  implements CrudService<ID>{
 
 
-    JpaRepository<E, ID> jpaRepository;
+    protected JpaRepository<E, ID> jpaRepository;
     Class<E> entityClass;
-    ModelMapper modelMapper;
+    protected ModelMapper modelMapper;
     @PersistenceContext
-    EntityManager entityManager;
+    protected EntityManager entityManager;
 
     public CrudJpaService( JpaRepository<E, ID> jpaRepository,Class<E> entityClass, ModelMapper modelMapper){
         this.jpaRepository = jpaRepository;
