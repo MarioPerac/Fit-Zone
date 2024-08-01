@@ -14,8 +14,7 @@ const routes: Routes = [
   },
   {
     path: "new-program",
-    loadChildren: () => import('./new-program/new-program.module').then(mod => mod.NewProgramModule),
-    canActivate: [GuardService]
+    loadChildren: () => import('./new-program/new-program.module').then(mod => mod.NewProgramModule)
   }
   ,
   {

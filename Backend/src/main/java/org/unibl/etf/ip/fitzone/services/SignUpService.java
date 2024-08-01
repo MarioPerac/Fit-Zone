@@ -5,7 +5,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.unibl.etf.ip.fitzone.models.dto.User;
 import org.unibl.etf.ip.fitzone.models.entites.UserEntity;
 import org.unibl.etf.ip.fitzone.models.requests.UserRequest;
 import org.unibl.etf.ip.fitzone.repositories.UserRepository;

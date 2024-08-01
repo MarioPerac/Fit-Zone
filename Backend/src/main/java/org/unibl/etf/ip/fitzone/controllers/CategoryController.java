@@ -8,7 +8,7 @@ import org.unibl.etf.ip.fitzone.models.requests.CategoryRequest;
 import org.unibl.etf.ip.fitzone.services.CategoryService;
 
 @RestController
-@RequestMapping("/api/category")
+@RequestMapping("/api/categories")
 public class CategoryController extends CrudController<Integer, CategoryRequest, Category> {
 
     private CategoryService categoryService;

@@ -10,7 +10,6 @@ import org.unibl.etf.ip.fitzone.services.LoginService;
 
 @RestController
 @RequestMapping("/api/login")
-@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 
     private final LoginService loginService;

@@ -2,7 +2,6 @@ package org.unibl.etf.ip.fitzone.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 import org.unibl.etf.ip.fitzone.models.dto.User;
 import org.unibl.etf.ip.fitzone.models.entites.UserEntity;
 import org.unibl.etf.ip.fitzone.repositories.UserRepository;

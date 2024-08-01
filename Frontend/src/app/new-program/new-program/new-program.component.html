@@ -5,6 +5,15 @@
         </mat-card-header>
         <mat-card-content>
             <form [formGroup]="form" class="program-form">
+                <input #programImageInput type="file" (change)="onFileSelected($event)" style="display: none;">
+                <button mat-fab extended (click)="programImageInput.click()">
+                    <mat-icon>image</mat-icon>Upload Program Image</button>
+
+                <h4>Program Image</h4>
+                <div *ngIf="image">
+                    <img [src]="image" class="program-img">
+                </div>
+
                 <mat-form-field appearance="fill">
                     <mat-label>Name</mat-label>
                     <input matInput type="text" formControlName="name" required autocomplete="off">
@@ -21,16 +30,32 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
+                    <mat-label>Price</mat-label>
+                    <input matInput type="number" formControlName="price" required autocomplete="off">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Duration</mat-label>
+                    <input matInput type="number" formControlName="duration" required autocomplete="off">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Level</mat-label>
+                    <input matInput type="text" formControlName="level" required autocomplete="off">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
                     <mat-label>Categories</mat-label>
-                    <mat-select formControlName="categories" multiple>
+                    <mat-select formControlName="categories">
                         <mat-option *ngFor="let category of categories" [value]="category">
-                            {{ category }}
+                            {{ category.name }} - {{ category.attribute }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
 
-                <input #fileInput type="file" multiple (change)="onFilesSelected($event)" style="display: none;">
-                <button mat-fab extended (click)="fileInput.click()">
+                <input #multipleImagesInput type="file" multiple (change)="onFilesSelected($event)"
+                    style="display: none;">
+                <button mat-fab extended (click)="multipleImagesInput.click()">
                     <mat-icon>image</mat-icon>Upload Images</button>
 
                 <div *ngIf="images.length > 0">

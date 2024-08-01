@@ -1,39 +1,28 @@
-import { Category } from "./category.model";
-import { Image } from "./image.model";
-
-export class Program {
-    id: number;
+export class ProgramRequest {
+    id?: number;
     name: string;
     description: string;
     location: string;
-    category: Category;
+    categoryId: number;
     price: number;
     level: string;
     duration: number;
-    images: Image[];
-    programImage: Image;
 
     constructor(
-        id: number,
         name: string,
         description: string,
         location: string,
-        category: Category,
+        categoryId: number,
         price: number,
         level: string,
-        duration: number,
-        images: Image[],
-        image: Image
+        duration: number
     ) {
-        this.id = id;
         this.name = name;
         this.description = description;
         this.location = location;
-        this.category = category;
+        this.categoryId = categoryId;
         this.price = price;
         this.level = level;
         this.duration = duration;
-        this.images = images;
-        this.programImage = image;
     }
 }

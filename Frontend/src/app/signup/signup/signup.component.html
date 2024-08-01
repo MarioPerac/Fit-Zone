@@ -20,8 +20,7 @@
                         <h4>Select Avatar</h4>
                         <div class="avatar-options">
                             <img *ngFor="let avatar of avatars" [src]="avatar.imageUrl" alt="Avatar" class="avatar-img"
-                                [class.selected]="avatar.value === selectedAvatar?.value"
-                                (click)="selectAvatar(avatar)">
+                                [class.selected]="avatar.value === selectedAvatar.value" (click)="selectAvatar(avatar)">
                         </div>
                     </div>
                     <div class="first-column">

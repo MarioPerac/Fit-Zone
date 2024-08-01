@@ -29,3 +29,8 @@ button[mat-flat-button] {
     height: 50px;
     width: 80px;
 }
+
+.program-img {
+    height: 100px;
+    width: 150px;
+}
