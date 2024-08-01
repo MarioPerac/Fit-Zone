@@ -39,6 +39,11 @@ public abstract class CrudController <ID extends Serializable, REQ, RESP> {
         return crudService.insert(object, respClass);
     }
 
+    @PostMapping("/list")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<RESP> insert(@RequestBody List<REQ> objects) {
+           return crudService.insertAll(objects, respClass);
+    }
     @PutMapping("/{id}")
     public RESP update(@PathVariable ID id,@RequestBody REQ object) throws NotFoundException {
         return crudService.update(id, object, respClass);

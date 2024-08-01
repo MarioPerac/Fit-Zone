@@ -51,6 +51,15 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable>  
     }
 
     @Override
+    public <T,U> List<T> insertAll(List<U> objects, Class<T> resultDtoClass){
+        List<E> entities = objects.stream().map(o -> modelMapper.map(o, entityClass)).toList();
+        entities.forEach(o -> o.setId(null));
+
+        entities = jpaRepository.saveAllAndFlush(entities);
+        entities.forEach(e -> entityManager.refresh(e));
+        return entities.stream().map(e -> modelMapper.map(e, resultDtoClass)).collect(Collectors.toList());
+    }
+    @Override
     public <T,U> T update(ID id, U object, Class<T> resultDtoClass) throws NotFoundException{
         if(!jpaRepository.existsById(id)){
             throw new NotFoundException();
