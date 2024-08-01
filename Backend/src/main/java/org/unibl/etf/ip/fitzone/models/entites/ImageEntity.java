@@ -3,6 +3,7 @@ package org.unibl.etf.ip.fitzone.models.entites;
 import jakarta.persistence.*;
 import org.unibl.etf.ip.fitzone.base.BaseEntity;
 
+import java.util.Collections;
 import java.util.Objects;
 
 @Entity

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Program } from '../models/program.model';
+import { Program } from '../../models/program.model';
 import { map, Observable } from 'rxjs';
-import { ProgramRequest } from '../models/requests/program-request.model';
+import { ProgramRequest } from '../../models/requests/program-request.model';
 
 @Injectable({
   providedIn: 'root'

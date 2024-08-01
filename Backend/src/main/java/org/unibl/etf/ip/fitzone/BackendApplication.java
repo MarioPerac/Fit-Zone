@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.unibl.etf.ip.fitzone.models.dto.Program;
+import org.unibl.etf.ip.fitzone.models.entites.ProgramEntity;
 
 @SpringBootApplication
 public class BackendApplication {
