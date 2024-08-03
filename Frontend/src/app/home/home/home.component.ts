@@ -30,4 +30,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(["/program", program.id], { state: { program } });
   }
 
+  onLogoutClick() {
+    // logaout user, signedIn=false...
+    this.router.navigate(["/login"]);
+  }
 }
