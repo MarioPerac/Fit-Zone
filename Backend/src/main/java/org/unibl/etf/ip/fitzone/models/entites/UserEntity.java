@@ -8,7 +8,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "user", schema = "fit_zone", catalog = "")
 public class UserEntity implements BaseEntity<String> {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "username")
     private String username;
@@ -29,7 +28,7 @@ public class UserEntity implements BaseEntity<String> {
     private String avatar;
     @Basic
     @Column(name = "activated")
-    private Byte activated;
+    private Boolean activated = false;
 
     public String getUsername() {
         return username;
@@ -79,11 +78,11 @@ public class UserEntity implements BaseEntity<String> {
         this.avatar = avatar;
     }
 
-    public Byte getActivated() {
+    public Boolean getActivated() {
         return activated;
     }
 
-    public void setActivated(Byte activated) {
+    public void setActivated(Boolean activated) {
         this.activated = activated;
     }
 
