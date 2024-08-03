@@ -1,0 +1,2 @@
+avg 03, 2024 3:44:33 PO PODNE org.unibl.etf.ip.fitzone.server.ProxyMailServerThread run
+SEVERE: org.unibl.etf.ip.fitzone.models.dto.Mail; local class incompatible: stream classdesc serialVersionUID = -6593910611798929848, local class serialVersionUID = 3764700648316516566
