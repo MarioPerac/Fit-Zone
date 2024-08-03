@@ -1,0 +1,27 @@
+<div class="program-container">
+    <mat-card appearance="outlined">
+        <mat-card-header>
+            <mat-card-title>{{ program.name }}</mat-card-title>
+            <mat-card-subtitle>{{ program.category.name }} - {{program.category.attribute}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <img mat-card-image [src]="getProfileImage(program.images)" alt="{{ program.name }}">
+
+        <mat-card-content>
+            <p class="mat-body-1">Price: {{ program.price }} $</p>
+            <p class="mat-body-1">Level: {{ program.level }}</p>
+            <p class="mat-body-1">Duration: {{ program.duration }} hours</p>
+            <p class="mat-body-2">Description: {{ program.description }}</p>
+        </mat-card-content>
+
+
+
+        <swiper-container [slidesPerView]="1" [spaceBetween]="10" [pagination]="{ clickable: true }" [navigation]="true"
+            [autoplay]="{ delay: 1000 }" class="swiper-container">
+            <swiper-slide *ngFor="let image of program.images" class="swiper-slide">
+                <img [src]="image.data" [alt]="program.name" class="swiper-image">
+            </swiper-slide>
+        </swiper-container>
+
+    </mat-card>
+</div>

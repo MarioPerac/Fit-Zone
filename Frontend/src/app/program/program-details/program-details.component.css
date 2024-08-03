@@ -1,0 +1,25 @@
+.program-container {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+mat-card {
+    margin: 10px;
+}
+
+.swiper-container {
+    width: 100%;
+    height: auto;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-image {
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}

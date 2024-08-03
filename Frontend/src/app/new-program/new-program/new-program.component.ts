@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../models/category.model';
-import { CategoryService } from '../../services/category.service';
+import { CategoryService } from '../../services/category/category.service';
 import { ProgramService } from '../../services/program/program.service';
 import { Program } from '../../models/program.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Image } from '../../models/image.model';
 import { ProgramRequest } from '../../models/requests/program-request.model';
 import { ImageRequest } from '../../models/requests/image-request.model';
-import { ImageService } from '../../services/image.service';
+import { ImageService } from '../../services/image/image.service';
 
 @Component({
   selector: 'app-new-program',

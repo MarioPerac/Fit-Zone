@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GuardService } from './services/guard.service';
+import { GuardService } from './services/guard/guard.service';
 
 const routes: Routes = [
   {
@@ -22,6 +22,10 @@ const routes: Routes = [
     path: "home",
     loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule),
     // canActivate: [GuardService]
+  },
+  {
+    path: "program/:id",
+    loadChildren: () => import('./program/program.module').then(mod => mod.ProgramModule),
   }
 ];
 

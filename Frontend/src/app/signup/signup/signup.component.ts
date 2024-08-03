@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SignUpService } from '../../services/sign-up.service';
+import { SignUpService } from '../../services/signup/sign-up.service';
 
 @Component({
   selector: 'app-signup',

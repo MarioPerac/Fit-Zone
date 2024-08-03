@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Program } from '../../models/program.model';
 import { ProgramService } from '../../services/program/program.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   programs!: Program[];
 
-  constructor(private programService: ProgramService) { }
+  constructor(private programService: ProgramService, private router: Router) { }
 
   ngOnInit() {
     this.programService.getPrograms().subscribe(
@@ -25,5 +26,8 @@ export class HomeComponent implements OnInit {
 
 
 
+  openDetails(program: Program) {
+    this.router.navigate(["/program", program.id], { state: { program } });
+  }
 
 }
