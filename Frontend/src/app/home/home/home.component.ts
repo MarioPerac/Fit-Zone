@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Program } from '../../models/program.model';
 import { ProgramService } from '../../services/program/program.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login/login.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   programs!: Program[];
 
-  constructor(private programService: ProgramService, private router: Router) { }
+  constructor(private programService: ProgramService, private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
     this.programService.getPrograms().subscribe(
@@ -31,7 +32,13 @@ export class HomeComponent implements OnInit {
   }
 
   onLogoutClick() {
-    // logaout user, signedIn=false...
+    this.loginService.activeUser = null;
+    this.loginService.signedIn = false;
+
     this.router.navigate(["/login"]);
+  }
+
+  onProfileClick() {
+    this.router.navigate(["/profile"]);
   }
 }

@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
 
         this.loginService.signedIn = true;
         this.loginService.activeUser = user;
-        this.router.navigate(['home']);
+
+        this.router.navigate(['home'], { state: { user: this.loginService.activeUser, signedIn: this.loginService.signedIn } });
       },
       error: (error) => {
         if (error.status === 401) {

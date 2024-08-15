@@ -6,7 +6,7 @@ export class User {
     username: string;
     mail: string;
     avatar: string;
-    acitvated?: boolean;
+    activated?: boolean;
 
     constructor(firstName: string, lastName: string, username: string, password: string, mail: string, avatar: string, activated: boolean) {
         this.name = firstName;
@@ -15,6 +15,6 @@ export class User {
         this.password = password;
         this.mail = mail;
         this.avatar = avatar;
-        this.acitvated = activated;
+        this.activated = activated;
     }
 }

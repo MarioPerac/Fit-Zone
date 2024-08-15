@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: "program/:id",
     loadChildren: () => import('./program/program.module').then(mod => mod.ProgramModule),
+  },
+  {
+    path: "profile",
+    loadChildren: () => import('./profile/profile.module').then(mod => mod.ProfileModule),
   }
 ];
 
