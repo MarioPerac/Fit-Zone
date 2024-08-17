@@ -6,7 +6,14 @@
                 <app-my-programs [program]="program"></app-my-programs>
             </ng-container>
         </mat-tab>
-        <mat-tab label=" Active"> Content 2 </mat-tab>
-        <mat-tab label="Finished"> Content 3 </mat-tab>
+        <mat-tab label=" Active">
+            <ng-container *ngFor="let program of activePrograms">
+                <app-active-programs [program]="program"></app-active-programs>
+            </ng-container>
+        </mat-tab>
+        <mat-tab label="Finished">
+            <ng-container *ngFor="let program of finishedPrograms">
+                <app-finished-programs [program]="program"></app-finished-programs>
+            </ng-container> </mat-tab>
     </mat-tab-group>
 </div>

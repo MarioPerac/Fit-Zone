@@ -37,7 +37,7 @@ public class ProgramEntity implements BaseEntity<Integer> {
 
     @Basic
     @Column(name = "is_active")
-    private Boolean isActive = false;
+    private Boolean isActive = true;
     @Basic
     @Column(name = "level")
     private String level;

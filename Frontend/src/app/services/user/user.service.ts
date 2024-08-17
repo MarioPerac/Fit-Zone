@@ -16,4 +16,14 @@ export class UserService {
     const url = this.apiUrl + "/" + username + "/programs";
     return this.http.get<Program[]>(url);
   }
+
+  getUserActviePrograms(username: string) {
+    const url = this.apiUrl + "/" + username + "/programs/active";
+    return this.http.get<Program[]>(url);
+  }
+
+  getUserFinishedPrograms(username: string) {
+    const url = this.apiUrl + "/" + username + "/programs/finished";
+    return this.http.get<Program[]>(url);
+  }
 }

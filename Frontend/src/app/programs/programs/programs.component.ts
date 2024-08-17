@@ -12,15 +12,30 @@ import { UserService } from '../../services/user/user.service';
 export class ProgramsComponent implements OnInit {
 
   myPrograms!: Program[];
+  activePrograms!: Program[];
+  finishedPrograms!: Program[];
   constructor(private loginService: LoginService, private userService: UserService, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.userService.getUserPrograms(this.loginService.activeUser!.username).subscribe({
+    const username = this.loginService.activeUser!.username;
+    this.userService.getUserPrograms(username).subscribe({
       next: (programs: Program[]) => {
-        console.log(programs.length);
+
         this.myPrograms = programs;
+      }
+    });
+
+    this.userService.getUserActviePrograms(username).subscribe({
+      next: (programs: Program[]) => {
+        this.activePrograms = programs;
+      }
+    });
+
+    this.userService.getUserFinishedPrograms(username).subscribe({
+      next: (programs: Program[]) => {
+        this.finishedPrograms = programs;
       }
     });
   }

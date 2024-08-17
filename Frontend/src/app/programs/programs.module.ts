@@ -8,13 +8,17 @@ import { ToolbarComponent } from '../home/toolbar/toolbar.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HomeModule } from '../home/home.module';
 import { MyProgramsComponent } from './my-programs/my-programs.component';
+import { ActiveProgramsComponent } from './active-programs/active-programs.component';
+import { FinishedProgramsComponent } from './finished-programs/finished-programs.component';
 
 
 @NgModule({
   declarations: [
     ProgramsComponent,
     MyProgramsComponent,
-    MyProgramsComponent
+    MyProgramsComponent,
+    ActiveProgramsComponent,
+    FinishedProgramsComponent
   ],
   imports: [
     CommonModule,

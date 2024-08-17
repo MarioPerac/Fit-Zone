@@ -33,4 +33,14 @@ public class UserController extends CrudController<String, UserRequest, User> {
     public ResponseEntity<List<Program>> getUserPrograms(@PathVariable String username){
         return ResponseEntity.ok(userService.getUserPrograms(username));
    }
+
+   @GetMapping("/{username}/programs/active")
+    public ResponseEntity<List<Program>> getUserActivePrograms(@PathVariable String username){
+       return ResponseEntity.ok(userService.getUserActivePrograms(username));
+   }
+
+    @GetMapping("/{username}/programs/finished")
+    public ResponseEntity<List<Program>> getUserFinishedPrograms(@PathVariable String username){
+        return ResponseEntity.ok(userService.getUserFinishedPrograms(username));
+    }
 }
