@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GuardService } from './services/guard/guard.service';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(mod => mod.LoginModule)

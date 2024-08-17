@@ -1,5 +1,6 @@
 export class ProgramRequest {
     id?: number;
+    username: string;
     name: string;
     description: string;
     location: string;
@@ -9,6 +10,7 @@ export class ProgramRequest {
     duration: number;
 
     constructor(
+        username: string,
         name: string,
         description: string,
         location: string,
@@ -17,6 +19,7 @@ export class ProgramRequest {
         level: string,
         duration: number
     ) {
+        this.username = username;
         this.name = name;
         this.description = description;
         this.location = location;

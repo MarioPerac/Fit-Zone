@@ -9,6 +9,7 @@ import { Image } from '../../models/image.model';
 import { ProgramRequest } from '../../models/requests/program-request.model';
 import { ImageRequest } from '../../models/requests/image-request.model';
 import { ImageService } from '../../services/image/image.service';
+import { LoginService } from '../../services/login/login.service';
 
 @Component({
   selector: 'app-new-program',
@@ -25,7 +26,8 @@ export class NewProgramComponent implements OnInit {
     private categoryService: CategoryService,
     private programService: ProgramService,
     private snackBar: MatSnackBar,
-    private imageService: ImageService) { };
+    private imageService: ImageService,
+    private loginService: LoginService) { };
 
 
   ngOnInit(): void {
@@ -53,6 +55,7 @@ export class NewProgramComponent implements OnInit {
     const category: Category = form.value.categories;
     console.log(category);
     const program = new ProgramRequest(
+      this.loginService.activeUser?.username!,
       form.value.name,
       form.value.description,
       form.value.location,
@@ -64,7 +67,7 @@ export class NewProgramComponent implements OnInit {
 
     this.programService.createProgram(program).subscribe({
       next: (programReq: ProgramRequest) => {
-
+        // to do change
 
         const id = programReq.id || 0;
         const programImages: ImageRequest[] = [];

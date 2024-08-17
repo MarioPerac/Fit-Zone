@@ -18,6 +18,7 @@ export class ProgramService {
   }
 
   createProgram(program: ProgramRequest): Observable<ProgramRequest> {
-    return this.http.post<ProgramRequest>(this.apiUrl, program);
+    const createUrl = this.apiUrl + "/new";
+    return this.http.post<ProgramRequest>(createUrl, program);
   }
 }

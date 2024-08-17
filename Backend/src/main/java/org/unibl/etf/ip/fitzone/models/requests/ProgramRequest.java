@@ -8,6 +8,7 @@ import org.unibl.etf.ip.fitzone.models.dto.Image;
 @Data
 public class ProgramRequest {
     private String name;
+    private String username;
     private String description;
     private String location;
     private Integer categoryId;

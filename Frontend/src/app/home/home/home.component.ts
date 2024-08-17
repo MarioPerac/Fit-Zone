@@ -41,4 +41,8 @@ export class HomeComponent implements OnInit {
   onProfileClick() {
     this.router.navigate(["/profile"]);
   }
+
+  onNewProgramClick() {
+    this.router.navigate(["/new-program"]);
+  }
 }
