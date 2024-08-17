@@ -34,6 +34,10 @@ public class ProgramEntity implements BaseEntity<Integer> {
     @Basic
     @Column(name = "price")
     private Integer price;
+
+    @Basic
+    @Column(name = "is_active")
+    private Boolean isActive = false;
     @Basic
     @Column(name = "level")
     private String level;

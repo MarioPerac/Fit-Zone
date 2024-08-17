@@ -19,7 +19,6 @@ const routes: Routes = [
   }
   ,
   {
-
     path: "home",
     loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule),
     // canActivate: [GuardService]
@@ -31,6 +30,10 @@ const routes: Routes = [
   {
     path: "profile",
     loadChildren: () => import('./profile/profile.module').then(mod => mod.ProfileModule),
+  },
+  {
+    path: "programs",
+    loadChildren: () => import('./programs/programs.module').then(mod => mod.ProgramsModule)
   }
 ];
 

@@ -1,0 +1,12 @@
+<div class="home-container">
+    <app-toolbar></app-toolbar>
+    <mat-tab-group>
+        <mat-tab label="My Programs">
+            <ng-container *ngFor="let program of myPrograms">
+                <app-my-programs [program]="program"></app-my-programs>
+            </ng-container>
+        </mat-tab>
+        <mat-tab label=" Active"> Content 2 </mat-tab>
+        <mat-tab label="Finished"> Content 3 </mat-tab>
+    </mat-tab-group>
+</div>

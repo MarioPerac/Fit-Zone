@@ -34,13 +34,13 @@ export class ProgramDetailsComponent implements OnInit {
     return image;
   };
 
-  entrol() {
+  buy() {
     this.enrolmentService.add(new EnrolmentRequest(this.loginService.activeUser!.username, this.program.id)).subscribe({
       next: (enrolment: Enrolment) => {
-        this.snackBar.open('Successful enrolment', undefined, { duration: 2000 });
+        this.snackBar.open('Program successfully bought', undefined, { duration: 2000 });
       },
       error: (err) => {
-        this.snackBar.open('Error during enrolment', undefined, { duration: 2000 });
+        this.snackBar.open('Error while buying the program', undefined, { duration: 2000 });
       }
     });
   }

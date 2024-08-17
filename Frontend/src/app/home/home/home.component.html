@@ -1,15 +1,4 @@
 <div class="home-container">
-    <mat-toolbar>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span>Fit Zone</span>
-        <span class="example-spacer"></span>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="onProfileClick()">Profile</button>
-            <button mat-menu-item (click)="onNewProgramClick()">New Program</button>
-            <button mat-menu-item (click)="onLogoutClick()">Logout</button>
-        </mat-menu>
-    </mat-toolbar>
+    <app-toolbar></app-toolbar>
     <app-program *ngFor="let program of programs" [program]="program" (click)="openDetails(program)"></app-program>
 </div>

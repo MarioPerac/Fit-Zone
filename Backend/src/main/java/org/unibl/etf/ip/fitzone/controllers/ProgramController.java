@@ -1,9 +1,6 @@
 package org.unibl.etf.ip.fitzone.controllers;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.fitzone.base.CrudController;
 import org.unibl.etf.ip.fitzone.models.dto.Program;
 import org.unibl.etf.ip.fitzone.models.requests.ProgramRequest;
@@ -24,4 +21,5 @@ public class ProgramController extends CrudController<Integer, ProgramRequest, P
     public void CreateProgram(@RequestBody ProgramRequest programRequest){
         programService.createProgram(programRequest);
     }
+
 }
