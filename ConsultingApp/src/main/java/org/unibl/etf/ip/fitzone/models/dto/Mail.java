@@ -1,6 +1,6 @@
 package org.unibl.etf.ip.fitzone.models.dto;
-import java.io.Serializable;
 
+import java.io.Serializable;
 
 public class Mail implements Serializable {
 

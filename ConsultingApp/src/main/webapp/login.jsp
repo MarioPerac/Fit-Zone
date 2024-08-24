@@ -12,8 +12,8 @@
 		if (u != null) {
 			userBean.setFullName(u.getFullName());
 			userBean.setLoggedIn(true);
-			session.setAttribute("notification", "loged in");
-			//response.sendRedirect("messages.jsp");
+			session.setAttribute("notification", "");
+			response.sendRedirect("main.jsp");
 		} else {
 			session.setAttribute("notification", "Incorrect username or password.");
 			userBean.setLoggedIn(false);

@@ -48,20 +48,8 @@ public class ProxyMailServerThread extends Thread {
                         Message message = new MimeMessage(session);
                         message.setFrom(new InternetAddress(prop.getUsername()));
                         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail.getTo()));
-                        message.setSubject("Fit Zone - Activate account");
-
-
-                        String activationLink = "http://localhost:8080/api/signup/activate/" + mail.getToUsername();
-                        String htmlContent ="<html>"
-                                + "<body>"
-                                + "<p>Dear " + mail.getToFullName() + ",</p>"
-                                + "<p>Click the button below to activate your account:</p>"
-                                + "<a href=\"" + activationLink + "\" style=\"display:inline-block; padding: 10px 20px; color: white; background-color: #4CAF50; text-decoration: none;\">Activate Account</a>"
-                                + "</body>"
-                                + "</html>";
-
-
-                        message.setContent(htmlContent, "text/html");
+                        message.setSubject(mail.getSubject());
+                        message.setContent(mail.getHtmlContent(), "text/html");
 
                         Transport.send(message);
                         out.writeObject("OK");

@@ -40,7 +40,20 @@ public class SignUpService {
         entityManager.refresh(userEntity);
 
         new Thread(() -> {
-            mailService.sendMail(new Mail(userRequest.getMail(), userRequest.getName() +  " " + userRequest.getSurname(), userRequest.getUsername()));
+            String fullName = userRequest.getName() +  " " + userRequest.getSurname();
+            String subject = "Fit Zone - Activate account";
+            String activationLink = "http://localhost:8080/api/signup/activate/" + userRequest.getUsername();
+            String htmlContent ="<html>"
+                    + "<body>"
+                    + "<p>Dear " + fullName + ",</p>"
+                    + "<p>Click the button below to activate your account:</p>"
+                    + "<a href=\"" + activationLink + "\" style=\"display:inline-block; padding: 10px 20px; color: white; background-color: #4CAF50; text-decoration: none;\">Activate Account</a>"
+                    + "<br>"
+                    + "<p>Kind regards,</p>"
+                    + "<p>Fit Zone</p>"
+                    + "</body>"
+                    + "</html>";
+            mailService.sendMail(new Mail(userRequest.getMail(), subject, fullName, userRequest.getUsername(), htmlContent));
         }).start();
         return true;
     }

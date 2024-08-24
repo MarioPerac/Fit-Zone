@@ -20,8 +20,6 @@ public class MailService {
     @Value("${spring.mail.host}")
     private String ADDRESS;
 
-//    private ConfigMailProperties prop = new ConfigMailProperties();
-
     public MailService() {
 //        PORT = Integer.parseInt(prop.getProxyMailServerPort());
 //        ADDRESS = prop.getProxyMailServerAddres();
