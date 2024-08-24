@@ -13,13 +13,13 @@ import org.unibl.etf.ip.consultingapp.db.DatabaseConnection;
 
 public class MessageDao {
 
-	public static List<MessageBean> getAllMessages() {
+	public static List<MessageBean> getAllUnreadMessages() {
 		List<MessageBean> messages = new ArrayList<>();
-		String query = "SELECT m.id, m.title, m.content, m.is_read, u.name, u.surname, u.mail  FROM message_to_advisors m JOIN user u ON u.username = m.user_username";
+		String query = "SELECT m.id, m.title, m.content, m.is_read, u.name, u.surname, u.mail  FROM message_to_advisors m JOIN user u ON u.username = m.user_username WHERE is_read= ?";
 
 		try (Connection conn = DatabaseConnection.getConnection();
 				PreparedStatement ps = conn.prepareStatement(query)) {
-
+			ps.setBoolean(1, false);
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
 
@@ -40,20 +40,52 @@ public class MessageDao {
 
 		return messages;
 	}
-	
+
 	public static void messageRead(String id) {
-		  String query = "UPDATE message_to_advisors SET is_read = ? WHERE id = ?";
+		String query = "UPDATE message_to_advisors SET is_read = ? WHERE id = ?";
 
-		    try (Connection conn = DatabaseConnection.getConnection();
-		         PreparedStatement ps = conn.prepareStatement(query)) {
+		try (Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement ps = conn.prepareStatement(query)) {
 
-		        ps.setBoolean(1, true); 
-		        ps.setInt(2, Integer.parseInt(id)); 
+			ps.setBoolean(1, true);
+			ps.setInt(2, Integer.parseInt(id));
 
-		        ps.executeUpdate();
+			ps.executeUpdate();
 
-		    } catch (SQLException e) {
-		        e.printStackTrace(); 
-		    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	public static List<MessageBean> searchMessagesByContent(String searchTerm){
+		List<MessageBean> messages = new ArrayList<>();
+
+        String sql = "SELECT  m.title, m.content, m.is_read, u.name, u.surname, u.mail  FROM message_to_advisors m JOIN user u ON u.username = m.user_username WHERE content LIKE ?";
+        
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, "%" + searchTerm + "%");
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    MessageBean message = new MessageBean();
+                    message.setTitle(resultSet.getString("title"));
+                    message.setContent(resultSet.getString("content"));
+                    message.setRead(resultSet.getBoolean("is_read"));
+                    message.setUserFullName(resultSet.getString("name") + " " + resultSet.getString("surname"));
+                    message.setUserEmail(resultSet.getString("mail"));
+
+                    messages.add(message);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exceptions appropriately
+        }
+
+        return messages;
 	}
 }

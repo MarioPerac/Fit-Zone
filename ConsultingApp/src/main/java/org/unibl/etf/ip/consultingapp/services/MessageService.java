@@ -16,12 +16,16 @@ public class MessageService implements Serializable {
 
 	public MessageService() {}
 	
-	public List<MessageBean> getAllMessages(){
+	public List<MessageBean> getAllUnreadMessages(){
 		
-		return MessageDao.getAllMessages();
+		return MessageDao.getAllUnreadMessages();
 	}
 	
 	public void messageRead(String id) {
 		MessageDao.messageRead(id);
+	}
+	
+	public List<MessageBean> searchMessagesByContent(String searchTerm){
+		return MessageDao.searchMessagesByContent(searchTerm);
 	}
 }

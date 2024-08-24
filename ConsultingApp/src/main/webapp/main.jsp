@@ -13,7 +13,7 @@
     <h2>Messages</h2>
     <%
         // Call the getAllMessages method
-        List<MessageBean> messages = messageService.getAllMessages();
+        List<MessageBean> messages = messageService.getAllUnreadMessages();
         
         // Check if there are any messages
         if (messages != null && !messages.isEmpty()) {
@@ -56,5 +56,7 @@
     <%
         }
     %>
+    
+    <button onclick="window.location.href='search.jsp';">Search messages</button>
 </body>
 </html>
