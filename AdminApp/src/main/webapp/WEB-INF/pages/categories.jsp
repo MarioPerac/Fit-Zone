@@ -106,6 +106,7 @@
     <div class="button-container">
         <a href="?action=addCategoryPage" class="button">Add New Category</a>
     </div>
+       <p class="back-link"><a href="?action=home">Back to home</a></p>
 </div>
 
 </body>

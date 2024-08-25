@@ -12,8 +12,10 @@ import java.io.IOException;
 
 import org.unibl.etf.ip.fitzone.admin.beans.AdminBean;
 import org.unibl.etf.ip.fitzone.admin.beans.CategoryBean;
+import org.unibl.etf.ip.fitzone.admin.beans.UserBean;
 import org.unibl.etf.ip.fitzone.admin.dao.AdminDao;
 import org.unibl.etf.ip.fitzone.admin.dao.CategoryDao;
+import org.unibl.etf.ip.fitzone.admin.dao.UserDao;
 
 /**
  * Servlet implementation class Controller
@@ -53,10 +55,15 @@ public class Controller extends HttpServlet {
 				session.setAttribute("notification", "Incorrect username or password.");
 			}
 
-		} else if (action.equals("categories")) {
+		}else if(action.equals("home")) {
+			address = "/WEB-INF/pages/main.jsp";
+		}
+		
+		else if (action.equals("categories")) {
 			request.setAttribute("categories", CategoryBean.getAll());
 			address = "/WEB-INF/pages/categories.jsp";
 		} else if (action.equals("users")) {
+			request.setAttribute("users", UserDao.getAllUsers());
 			address = "/WEB-INF/pages/users.jsp";
 		} else if (action.equals("updateCategory")) {
 			int id = Integer.parseInt(request.getParameter("id"));
@@ -96,6 +103,38 @@ public class Controller extends HttpServlet {
 
 			request.setAttribute("categoryBean", CategoryDao.getById(id));
 			address = "/WEB-INF/pages/updateCategoryPage.jsp";
+		}
+		else if(action.equals("deleteUser")) {
+			String username = request.getParameter("username");
+			UserDao.deleteUser(username);
+			request.setAttribute("users", UserDao.getAllUsers());
+			address = "/WEB-INF/pages/users.jsp";
+		}
+		else if(action.equals("updateUser"))
+		{
+			   String username = request.getParameter("username");
+	            String name = request.getParameter("name");
+	            String surname = request.getParameter("surname");
+	            String mail = request.getParameter("mail");
+
+
+	            UserBean user = new UserBean();
+	            user.setUsername(username);
+	            user.setName(name);
+	            user.setSurname(surname);
+	            user.setMail(mail);
+	            
+	            UserDao.updateUser(user);
+	    		request.setAttribute("users", UserDao.getAllUsers());
+				address = "/WEB-INF/pages/users.jsp";
+		}
+		else if(action.equals("updateUserPage"))
+		{
+			String username = request.getParameter("username");
+			UserBean userBean = UserDao.getById(username);
+			
+			request.setAttribute("userBean", userBean);
+			address = "/WEB-INF/pages/userUpdatePage.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);

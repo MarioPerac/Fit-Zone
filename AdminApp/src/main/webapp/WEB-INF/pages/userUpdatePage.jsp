@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="org.unibl.etf.ip.fitzone.admin.beans.CategoryBean" %>
-<%@ page import="org.unibl.etf.ip.fitzone.admin.dao.CategoryDao" %>
+<%@ page import="org.unibl.etf.ip.fitzone.admin.beans.UserBean" %>
+<%@ page import="org.unibl.etf.ip.fitzone.admin.dao.UserDao" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Update Category</title>
+<title>Update User</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -39,14 +39,14 @@
     label {
         font-weight: bold;
         margin-bottom: 5px;
-        align-self: flex-start; 
+        align-self: flex-start;
     }
     input[type="text"] {
         padding: 8px;
         border: 1px solid #ddd;
         border-radius: 4px;
         margin-bottom: 10px;
-        width: 100%; 
+        width: 100%;
         max-width: 300px;
     }
     input[type="submit"] {
@@ -56,8 +56,8 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        width: 100%; 
-        max-width: 150px; 
+        width: 100%;
+        max-width: 150px;
     }
     input[type="submit"]:hover {
         background-color: #0056b3;
@@ -78,28 +78,32 @@
 </head>
 <body>
 <%
-    CategoryBean category = (CategoryBean) request.getAttribute("categoryBean");
+    UserBean user = (UserBean) request.getAttribute("userBean");
 %>
 <div class="container">
-    <h1>Update Category</h1>
+    <h1>Update User</h1>
 
-    <form action="?action=updateCategory" method="post">
+    <form action="?action=updateUser" method="post">
         <input type="hidden" name="action" value="update">
-        <input type="hidden" name="id" value="<%= category.getId() %>">
+        <input type="hidden" name="username" value="<%= user.getUsername() %>">
         <p>
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<%= category.getName() %>" required>
+            <input type="text" id="name" name="name" value="<%= user.getName() %>" required>
         </p>
         <p>
-            <label for="attribute">Attribute:</label>
-            <input type="text" id="attribute" name="attribute" value="<%= category.getAttribute() %>" required>
+            <label for="surname">Surname:</label>
+            <input type="text" id="surname" name="surname" value="<%= user.getSurname() %>" required>
+        </p>
+        <p>
+            <label for="mail">Mail:</label>
+            <input type="text" id="mail" name="mail" value="<%= user.getMail() %>" required>
         </p>
         <p>
             <input type="submit" value="Save">
         </p>
     </form>
 
-    <p class="back-link"><a href="?action=categories">Back to Category List</a></p>
+    <p class="back-link"><a href="?action=users">Back to User List</a></p>
 </div>
 
 </body>
