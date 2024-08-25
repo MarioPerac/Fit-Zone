@@ -1,4 +1,4 @@
-package org.unibl.etf.ip.consultingapp.db;
+package org.unibl.etf.ip.fitzone.admin.db;
 
 import java.sql.Connection;
 
