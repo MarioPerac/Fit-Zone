@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Consulting Application</title>
+<title>Admin Application</title>
 <style>
     body {
         font-family: Arial, sans-serif;
