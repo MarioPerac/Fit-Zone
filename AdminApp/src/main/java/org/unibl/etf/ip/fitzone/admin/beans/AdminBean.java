@@ -41,7 +41,4 @@ public class AdminBean implements Serializable{
 		this.surname = surname;
 	}
 	
-	public static AdminBean login(String username, String password) {
-		return AdminDao.login(username, password);
-	}
 }
