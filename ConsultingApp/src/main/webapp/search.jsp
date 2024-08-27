@@ -78,7 +78,7 @@
 </head>
 <body>
 
-	<!-- Search Form -->
+
 	<form action="search.jsp" method="get">
 		<label for="searchTerm">Search Messages by Content:</label> <input
 			type="text" id="searchTerm" name="searchTerm"
@@ -86,7 +86,6 @@
 			type="submit" value="Search">
 	</form>
 
-	<!-- Messages Table -->
 	<table border="1">
 		<tr>
 			<th>Title</th>

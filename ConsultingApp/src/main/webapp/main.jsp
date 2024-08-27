@@ -82,10 +82,8 @@
     <div class="container">
         <h2>Messages</h2>
         <%
-            // Call the getAllMessages method
             List<MessageBean> messages = messageService.getAllUnreadMessages();
-            
-            // Check if there are any messages
+
             if (messages != null && !messages.isEmpty()) {
         %>
         <table>
@@ -96,7 +94,7 @@
                 <th>Action</th>
             </tr>
             <%
-                // Iterate through the list and display messages
+        
                 for (MessageBean message : messages) {
             %>
             <tr>

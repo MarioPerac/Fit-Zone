@@ -5,6 +5,8 @@ import { NewProgramRoutingModule } from './new-program-routing.module';
 import { NewProgramComponent } from './new-program/new-program.component';
 import { FormsModule } from '@angular/forms';
 import { AppMaterialModule } from '../app-material/app-material.module';
+import { HomeComponent } from '../home/home/home.component';
+import { HomeModule } from '../home/home.module';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { AppMaterialModule } from '../app-material/app-material.module';
     CommonModule,
     NewProgramRoutingModule,
     FormsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    HomeModule
   ]
 })
 export class NewProgramModule { }

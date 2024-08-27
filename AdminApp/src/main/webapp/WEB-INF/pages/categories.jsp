@@ -74,10 +74,10 @@
         </thead>
         <tbody>
             <% 
-                // Retrieve the list of categories from the request attribute
+             
                 List<CategoryBean> categories = (List<CategoryBean>) request.getAttribute("categories");
                 
-                // Check if the list is not null and not empty
+                
                 if (categories != null && !categories.isEmpty()) {
                     for (CategoryBean category : categories) {
             %>

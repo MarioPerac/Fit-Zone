@@ -12,7 +12,7 @@ import org.unibl.etf.ip.fitzone.models.dto.Mail;
 public class MailService implements Serializable {
 	
 	private String ADDRESS = "localhost";
-	private int PORT = 9000;
+	private int PORT = 9001;
 	 public MailService() {
    }
 

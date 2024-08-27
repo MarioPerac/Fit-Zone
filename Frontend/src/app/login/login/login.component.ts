@@ -58,4 +58,8 @@ export class LoginComponent implements OnInit {
     this.hide = !this.hide;
     event.stopPropagation();
   }
+
+  signup() {
+    this.router.navigate(["/signup"]);
+  }
 }
