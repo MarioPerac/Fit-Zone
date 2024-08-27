@@ -37,4 +37,8 @@ export class ToolbarComponent {
   onConsultingClick() {
     this.router.navigate(["consulting"]);
   }
+
+  onChatsClick() {
+    this.router.navigate(["chats"]);
+  }
 }

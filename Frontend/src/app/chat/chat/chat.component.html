@@ -1,1 +1,12 @@
-<p>chat works!</p>
+<app-toolbar></app-toolbar>
+
+<div class="chat-list">
+    <h2 class="header">Chats</h2>
+    <div class="chat-cards">
+        <mat-card *ngFor="let chat of chats" class="chat-card">
+            <mat-card-content>
+                <p>{{ chat}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
