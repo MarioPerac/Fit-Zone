@@ -53,7 +53,6 @@ export class NewProgramComponent implements OnInit {
   create(form: FormGroup) {
 
     const category: Category = form.value.categories;
-    console.log(category);
     const program = new ProgramRequest(
       this.loginService.activeUser?.username!,
       form.value.name,

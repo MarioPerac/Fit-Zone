@@ -29,4 +29,12 @@ export class ToolbarComponent {
   onProgramsClick() {
     this.router.navigate(["/programs"]);
   }
+
+  onHomeClick() {
+    this.router.navigate(["home"]);
+  }
+
+  onConsultingClick() {
+    this.router.navigate(["consulting"]);
+  }
 }

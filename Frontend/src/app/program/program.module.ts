@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProgramRoutingModule } from './program-routing.module';
 import { ProgramDetailsComponent } from './program-details/program-details.component';
 import { AppMaterialModule } from '../app-material/app-material.module';
+import { HomeModule } from '../home/home.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AppMaterialModule } from '../app-material/app-material.module';
   imports: [
     CommonModule,
     ProgramRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    HomeModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
