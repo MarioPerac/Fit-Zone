@@ -1,0 +1,12 @@
+<app-toolbar></app-toolbar>
+
+<div class="chat-list">
+    <h2 class="header">Chats</h2>
+    <div class="chat-cards">
+        <mat-card *ngFor="let chat of chats" class="chat-card" (click)="onChatClick(chat)">
+            <mat-card-content>
+                <p>{{ chat.friendName }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+.chat-list {
+    padding: 16px;
+}
+
+.chat-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.chat-card {
+    width: 300px;
+    margin: 8px;
+    background-color: lightgray;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 24px;
+}

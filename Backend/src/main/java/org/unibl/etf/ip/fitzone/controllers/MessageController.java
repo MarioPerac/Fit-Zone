@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.unibl.etf.ip.fitzone.base.CrudController;
 import org.unibl.etf.ip.fitzone.base.CrudService;
+import org.unibl.etf.ip.fitzone.models.dto.Chat;
 import org.unibl.etf.ip.fitzone.models.dto.Message;
 import org.unibl.etf.ip.fitzone.models.requests.MessageRequest;
 import org.unibl.etf.ip.fitzone.services.MessageService;
@@ -25,8 +26,14 @@ public class MessageController extends CrudController<Integer, MessageRequest, M
     }
 
     @GetMapping("/chats/{username}")
-    public List<String> getAllFriendsNames(@PathVariable String username){
+    public List<Chat> getAllFriendsNames(@PathVariable String username){
 
     return messageService.getAllFriendsName(username);
+    }
+
+    @GetMapping("/{username}/with/{friend}")
+    public List<Message> getAllMessagesWithFriend(@PathVariable String username, @PathVariable String friend)
+    {
+        return messageService.getAllMessagesWithFriend(username, friend);
     }
 }

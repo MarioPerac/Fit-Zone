@@ -2,8 +2,10 @@ package org.unibl.etf.ip.fitzone.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.unibl.etf.ip.fitzone.base.CrudJpaService;
 import org.unibl.etf.ip.fitzone.models.dto.Chat;
+import org.unibl.etf.ip.fitzone.models.dto.Message;
 import org.unibl.etf.ip.fitzone.models.entites.MessageEntity;
 import org.unibl.etf.ip.fitzone.repositories.MessageRepository;
 
@@ -20,10 +22,21 @@ public class MessageService extends CrudJpaService<MessageEntity, Integer> {
         this.messageRepository = jpaRepository;
     }
 
-    public List<String> getAllFriendsName(String username){
+    public List<Chat> getAllFriendsName(String username){
 
         List<MessageEntity> messages = messageRepository.getAllBySenderOrReceiver(username, username);
 
-        return messages.stream().map(m -> m.getReceiver().equals(username) ? m.getSender() : m.getReceiver()).distinct().collect(Collectors.toList());
+        return messages.stream()
+                .map(m -> m.getReceiver().equals(username) ? new Chat(m.getSender(), m.getSenderUser().getName() + " " + m.getSenderUser().getSurname())
+                        : new Chat(m.getReceiver(), m.getReceiverUser().getName() + " " + m.getReceiverUser().getSurname() ))
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public List<Message> getAllMessagesWithFriend(String username, String friend)
+    {
+        List<MessageEntity> messageEntities = messageRepository.getAllMessagesWithFriend(username, friend);
+
+        return messageEntities.stream().map(m -> modelMapper.map(m, Message.class)).collect(Collectors.toList());
     }
 }

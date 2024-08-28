@@ -1,12 +1,25 @@
 <app-toolbar></app-toolbar>
 
-<div class="chat-list">
-    <h2 class="header">Chats</h2>
-    <div class="chat-cards">
-        <mat-card *ngFor="let chat of chats" class="chat-card">
+<div class="chat-container">
+    <h2>Chat with {{ friendName }}</h2>
+
+    <div class="messages-list">
+        <mat-card *ngFor="let message of messages" class="message-card">
+            <mat-card-header>
+                <mat-card-title>{{ message.sender === username ? "You" : friendName }}</mat-card-title>
+                <mat-card-subtitle>{{ message.created | date:'short' }}</mat-card-subtitle>
+            </mat-card-header>
             <mat-card-content>
-                <p>{{ chat}}</p>
+                <p>{{ message.content }}</p>
             </mat-card-content>
         </mat-card>
+    </div>
+
+    <div class="message-input">
+        <mat-form-field appearance="fill">
+            <mat-label>Type your message</mat-label>
+            <input matInput [(ngModel)]="newMessageContent">
+        </mat-form-field>
+        <button mat-flat-button color="primary" (click)="sendMessage()">Send</button>
     </div>
 </div>
