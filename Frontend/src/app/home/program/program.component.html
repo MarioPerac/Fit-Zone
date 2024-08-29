@@ -1,11 +1,10 @@
 <div class="program-container">
-
-
     <mat-card appearance="outlined">
-        <mat-card-header>{{ program.name }} </mat-card-header>
-        <img [src]="getProfileImage(program.images)" class="profile-img">
-        <p>Pirce: {{program.price}} $</p>
-        <p>Level: {{program.level}}</p>
+        <mat-card-header><strong>{{ program.name }}</strong></mat-card-header>
+        <mat-card-content>
+            <img [src]="getProfileImage(program.images)" class="profile-img">
+            <p>Price: {{ program.price }} $</p>
+            <p>Level: {{ program.level }}</p>
+        </mat-card-content>
     </mat-card>
-
 </div>

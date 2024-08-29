@@ -12,17 +12,25 @@ import { LoginService } from '../../services/login/login.service';
 export class HomeComponent implements OnInit {
 
   programs!: Program[];
-
+  totalItems: number = 0;
+  currentPage: number = 0;
+  pageSize: number = 3;
   constructor(private programService: ProgramService, private router: Router, private loginService: LoginService) { }
 
-  ngOnInit() {
-    this.programService.getPrograms().subscribe(
-      {
-        next: (programs: Program[]) => {
-          this.programs = programs;
-        }
-      }
-    );
+  ngOnInit(): void {
+    this.loadPrograms();
+  }
+
+  loadPrograms(page: number = 0): void {
+    this.programService.getProgramsToUser(this.loginService.activeUser!.username, page, this.pageSize).subscribe(response => {
+      this.programs = response.content;
+      this.totalItems = response.totalElements;
+      this.currentPage = response.number;
+    });
+  }
+
+  onPageChange(event: any): void {
+    this.loadPrograms(event.pageIndex);
   }
 
 

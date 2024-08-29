@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Program } from '../../models/program.model';
 import { map, Observable } from 'rxjs';
 import { ProgramRequest } from '../../models/requests/program-request.model';
+import { Page } from '../../models/page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,13 @@ export class ProgramService {
   createProgram(program: ProgramRequest): Observable<ProgramRequest> {
     const createUrl = this.apiUrl + "/new";
     return this.http.post<ProgramRequest>(createUrl, program);
+  }
+
+  getProgramsToUser(username: string, page: number, size: number): Observable<Page<Program>> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    return this.http.get<Page<Program>>(this.apiUrl + '/to/' + username, { params });
   }
 }

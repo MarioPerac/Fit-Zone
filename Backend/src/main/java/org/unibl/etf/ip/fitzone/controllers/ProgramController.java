@@ -1,5 +1,8 @@
 package org.unibl.etf.ip.fitzone.controllers;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.fitzone.base.CrudController;
 import org.unibl.etf.ip.fitzone.models.dto.Program;
@@ -16,10 +19,18 @@ public class ProgramController extends CrudController<Integer, ProgramRequest, P
         this.programService = programService;
     }
 
+    @GetMapping("/to/{username}")
+    public Page<Program> getProgramsToUser(
+            @PathVariable String username,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size){
+
+        Pageable pageable = PageRequest.of(page, size);
+        return programService.getProgramsToUser(username, pageable);
+    }
 
     @PostMapping("/new")
     public void CreateProgram(@RequestBody ProgramRequest programRequest){
         programService.createProgram(programRequest);
     }
-
 }

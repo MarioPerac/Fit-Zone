@@ -1,5 +1,7 @@
 package org.unibl.etf.ip.fitzone.repositories;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.unibl.etf.ip.fitzone.models.entites.UserHasProgramEntity;
@@ -11,4 +13,6 @@ import java.util.List;
 public interface UserHasProgramRepository extends JpaRepository<UserHasProgramEntity, UserHasProgramKeys> {
 
     public List<UserHasProgramEntity> getUserHasProgramEntitiesByUserUsername(String username);
+
+    public Page<UserHasProgramEntity> getByUserUsernameNot(String username, Pageable pageable);
 }

@@ -1,13 +1,21 @@
 package org.unibl.etf.ip.fitzone.services;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.unibl.etf.ip.fitzone.base.CrudJpaService;
+import org.unibl.etf.ip.fitzone.models.dto.Program;
 import org.unibl.etf.ip.fitzone.models.entites.ProgramEntity;
 import org.unibl.etf.ip.fitzone.models.entites.UserHasProgramEntity;
 import org.unibl.etf.ip.fitzone.models.requests.ProgramRequest;
 import org.unibl.etf.ip.fitzone.repositories.ProgramRepository;
 import org.unibl.etf.ip.fitzone.repositories.UserHasProgramRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -28,4 +36,15 @@ public class ProgramService extends CrudJpaService<ProgramEntity, Integer> {
         userHasProgramEntity = userHasProgramRepository.saveAndFlush(userHasProgramEntity);
         entityManager.refresh(userHasProgramEntity);
     }
+
+    public Page<Program> getProgramsToUser(String username, Pageable pageable){
+        Page<UserHasProgramEntity> userHasProgramEntity = userHasProgramRepository.getByUserUsernameNot(username, pageable);
+
+        List<Program> programs = userHasProgramEntity.stream()
+                .map(u -> modelMapper.map(u.getProgramEntity(), Program.class))
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(programs, pageable, userHasProgramEntity.getTotalElements());
+    }
+
 }
