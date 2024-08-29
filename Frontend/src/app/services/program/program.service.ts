@@ -4,6 +4,7 @@ import { Program } from '../../models/program.model';
 import { map, Observable } from 'rxjs';
 import { ProgramRequest } from '../../models/requests/program-request.model';
 import { Page } from '../../models/page.model';
+import { UserHasProgram } from '../../models/userHasProgram.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +24,11 @@ export class ProgramService {
     return this.http.post<ProgramRequest>(createUrl, program);
   }
 
-  getProgramsToUser(username: string, page: number, size: number): Observable<Page<Program>> {
+  getProgramsToUser(username: string, page: number, size: number): Observable<Page<UserHasProgram>> {
     let params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
 
-    return this.http.get<Page<Program>>(this.apiUrl + '/to/' + username, { params });
+    return this.http.get<Page<UserHasProgram>>(this.apiUrl + '/to/' + username, { params });
   }
 }

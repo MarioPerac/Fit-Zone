@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.fitzone.base.CrudController;
 import org.unibl.etf.ip.fitzone.models.dto.Program;
+import org.unibl.etf.ip.fitzone.models.dto.UserHasProgram;
 import org.unibl.etf.ip.fitzone.models.requests.ProgramRequest;
 import org.unibl.etf.ip.fitzone.services.ProgramService;
 
@@ -20,7 +21,7 @@ public class ProgramController extends CrudController<Integer, ProgramRequest, P
     }
 
     @GetMapping("/to/{username}")
-    public Page<Program> getProgramsToUser(
+    public Page<UserHasProgram> getProgramsToUser(
             @PathVariable String username,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size){

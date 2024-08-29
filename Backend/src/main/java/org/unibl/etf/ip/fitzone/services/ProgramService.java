@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.unibl.etf.ip.fitzone.base.CrudJpaService;
 import org.unibl.etf.ip.fitzone.models.dto.Program;
+import org.unibl.etf.ip.fitzone.models.dto.UserHasProgram;
 import org.unibl.etf.ip.fitzone.models.entites.ProgramEntity;
 import org.unibl.etf.ip.fitzone.models.entites.UserHasProgramEntity;
 import org.unibl.etf.ip.fitzone.models.requests.ProgramRequest;
@@ -37,11 +38,11 @@ public class ProgramService extends CrudJpaService<ProgramEntity, Integer> {
         entityManager.refresh(userHasProgramEntity);
     }
 
-    public Page<Program> getProgramsToUser(String username, Pageable pageable){
+    public Page<UserHasProgram> getProgramsToUser(String username, Pageable pageable){
         Page<UserHasProgramEntity> userHasProgramEntity = userHasProgramRepository.getByUserUsernameNot(username, pageable);
 
-        List<Program> programs = userHasProgramEntity.stream()
-                .map(u -> modelMapper.map(u.getProgramEntity(), Program.class))
+        List<UserHasProgram> programs = userHasProgramEntity.stream()
+                .map(u -> new UserHasProgram(modelMapper.map(u.getProgramEntity(), Program.class), u.getUserUsername(), u.getUserEntity().getName() + " " + u.getUserEntity().getSurname()))
                 .collect(Collectors.toList());
 
         return new PageImpl<>(programs, pageable, userHasProgramEntity.getTotalElements());

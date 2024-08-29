@@ -11,16 +11,16 @@
             <p class="mat-body-1">Price: {{ program.price }} $</p>
             <p class="mat-body-1">Level: {{ program.level }}</p>
             <p class="mat-body-1">Duration: {{ program.duration }} hours</p>
+            <p class="mat-body-1">Owner: {{ userHasProgram.fullName}}</p>
             <p class="mat-body-2">Description: {{ program.description }}</p>
-
             <button class="enrol-button" mat-flat-button color="primary" (click)="buy()">Buy Program</button>
-
             <swiper-container [slidesPerView]="1" [spaceBetween]="10" [pagination]="{ clickable: true }"
                 [navigation]="true" class="swiper-container">
                 <swiper-slide *ngFor="let image of program.images" class="swiper-slide">
                     <img [src]="image.data" [alt]="program.name" class="swiper-image">
                 </swiper-slide>
             </swiper-container>
+            <button class="enrol-button" mat-flat-button color="primary" (click)="openChat()">Contact</button>
         </mat-card-content>
     </mat-card>
 </div>

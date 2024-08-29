@@ -1,15 +1,16 @@
 <div class="home-container">
     <app-toolbar></app-toolbar>
 
-    <ng-container *ngIf="programs.length > 0; else noPrograms">
-        <app-program *ngFor="let program of programs" [program]="program" (click)="openDetails(program)"></app-program>
+    <ng-container *ngIf="usersHavePrograms.length > 0; else noPrograms">
+        <app-program *ngFor="let userHasProgram of usersHavePrograms" [userHasProgram]="userHasProgram"
+            (click)="openDetails(userHasProgram)"></app-program>
     </ng-container>
 
     <ng-template #noPrograms>
         <p class="no-programs-message">No programs available.</p>
     </ng-template>
 
-    <mat-paginator *ngIf="programs.length > 0" [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage"
-        (page)="onPageChange($event)">
+    <mat-paginator *ngIf="usersHavePrograms.length > 0" [length]="totalItems" [pageSize]="pageSize"
+        [pageIndex]="currentPage" (page)="onPageChange($event)">
     </mat-paginator>
 </div>

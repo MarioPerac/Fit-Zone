@@ -23,6 +23,9 @@ public class UserHasProgramEntity {
     @JoinColumn(name = "program_id", insertable = false, updatable = false)
     private ProgramEntity programEntity;
 
+    @ManyToOne
+    @JoinColumn(name = "user_username", insertable = false, updatable = false)
+    private UserEntity userEntity;
 
     public UserHasProgramEntity(){}
 

@@ -6,6 +6,8 @@ import { EnrolmentService } from '../../services/enrolment/enrolment.service';
 import { EnrolmentRequest } from '../../models/requests/enrolment-request.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Enrolment } from '../../models/enrolment.model';
+import { UserHasProgram } from '../../models/userHasProgram.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-program-details',
@@ -13,12 +15,14 @@ import { Enrolment } from '../../models/enrolment.model';
   styleUrl: './program-details.component.css'
 })
 export class ProgramDetailsComponent implements OnInit {
+  userHasProgram!: UserHasProgram;
   program!: Program;
 
-  constructor(private loginService: LoginService, private enrolmentService: EnrolmentService, private snackBar: MatSnackBar) { }
+  constructor(private loginService: LoginService, private enrolmentService: EnrolmentService, private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
-    this.program = history.state.program;
+    this.userHasProgram = history.state.userHasProgram;
+    this.program = this.userHasProgram.program;
   }
 
   getProfileImage(images: Image[]): string {
@@ -43,5 +47,10 @@ export class ProgramDetailsComponent implements OnInit {
         this.snackBar.open('Error while buying the program', undefined, { duration: 2000 });
       }
     });
+  }
+
+  openChat() {
+    const friendName = this.userHasProgram.fullName;
+    this.router.navigate(["chat/" + this.loginService.activeUser?.username + "/with/" + this.userHasProgram.username], { state: { friendName } });
   }
 }

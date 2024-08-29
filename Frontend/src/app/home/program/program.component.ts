@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Program } from '../../models/program.model';
 import { Image } from '../../models/image.model';
+import { UserHasProgram } from '../../models/userHasProgram.model';
 
 @Component({
   selector: 'app-program',
@@ -9,7 +10,7 @@ import { Image } from '../../models/image.model';
 })
 export class ProgramComponent {
 
-  @Input() program!: Program;
+  @Input() userHasProgram!: UserHasProgram;
 
   getProfileImage(images: Image[]): string {
 

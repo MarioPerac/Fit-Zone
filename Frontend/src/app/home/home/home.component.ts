@@ -3,6 +3,7 @@ import { Program } from '../../models/program.model';
 import { ProgramService } from '../../services/program/program.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
+import { UserHasProgram } from '../../models/userHasProgram.model';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { LoginService } from '../../services/login/login.service';
 })
 export class HomeComponent implements OnInit {
 
-  programs!: Program[];
+  usersHavePrograms!: UserHasProgram[];
   totalItems: number = 0;
   currentPage: number = 0;
   pageSize: number = 3;
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   loadPrograms(page: number = 0): void {
     this.programService.getProgramsToUser(this.loginService.activeUser!.username, page, this.pageSize).subscribe(response => {
-      this.programs = response.content;
+      this.usersHavePrograms = response.content;
       this.totalItems = response.totalElements;
       this.currentPage = response.number;
     });
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit {
 
 
 
-  openDetails(program: Program) {
-    this.router.navigate(["/program", program.id], { state: { program } });
+  openDetails(userHasProgram: UserHasProgram) {
+    this.router.navigate(["/program", userHasProgram.program.id], { state: { userHasProgram } });
   }
 }
