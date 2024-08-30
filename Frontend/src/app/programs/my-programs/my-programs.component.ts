@@ -14,8 +14,9 @@ import { ProgramComponent } from '../../home/program/program.component';
 export class MyProgramsComponent {
   @Input() program!: Program;
   @Output() programDeleted = new EventEmitter<number>();
+  @Output() programFinished = new EventEmitter<number>();
 
-  constructor(private programService: ProgramService, private snackBar: MatSnackBar, private router: Router) { }
+  constructor(private programService: ProgramService, private snackBar: MatSnackBar) { }
   getProfileImage(images: Image[]): string {
 
     let image: string = '';
@@ -28,6 +29,14 @@ export class MyProgramsComponent {
 
     return image;
   };
+
+  onFinishClick() {
+    this.programService.finishProgram(this.program.id).subscribe((program: Program) => {
+      this.snackBar.open('Program finished', undefined, { duration: 2000 });
+      this.program = program;
+    }
+    );
+  }
 
   onDeleteClick() {
     this.programService.delete(this.program.id).subscribe(() => {

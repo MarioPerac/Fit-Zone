@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.unibl.etf.ip.fitzone.base.CrudJpaService;
+import org.unibl.etf.ip.fitzone.exceptions.NotFoundException;
 import org.unibl.etf.ip.fitzone.models.dto.Program;
 import org.unibl.etf.ip.fitzone.models.dto.UserHasProgram;
 import org.unibl.etf.ip.fitzone.models.entites.ProgramEntity;
@@ -23,9 +24,10 @@ import java.util.stream.Collectors;
 public class ProgramService extends CrudJpaService<ProgramEntity, Integer> {
 
     private UserHasProgramRepository userHasProgramRepository;
+    private ProgramRepository programRepository;
     public ProgramService(ProgramRepository programRepository, ModelMapper modelMapper, UserHasProgramRepository userHasProgramRepository){
         super(programRepository, ProgramEntity.class, modelMapper);
-
+        this.programRepository = programRepository;
         this.userHasProgramRepository = userHasProgramRepository;
     }
 
@@ -50,10 +52,24 @@ public class ProgramService extends CrudJpaService<ProgramEntity, Integer> {
         }
 
         List<UserHasProgram> programs = userHasProgramEntity.stream()
+                .filter(u -> u.getProgramEntity().getIsActive())
                 .map(u -> new UserHasProgram(modelMapper.map(u.getProgramEntity(), Program.class), u.getUserUsername(), u.getUserEntity().getName() + " " + u.getUserEntity().getSurname()))
                 .collect(Collectors.toList());
 
         return new PageImpl<>(programs, pageable, userHasProgramEntity.getTotalElements());
     }
 
+    public Program finsishProgram(Integer id) throws NotFoundException {
+
+        if(!programRepository.existsById(id))
+            throw new NotFoundException();
+
+        ProgramEntity programEntity = programRepository.findById(id).get();
+
+        programEntity.setIsActive(false);
+        programEntity = programRepository.saveAndFlush(programEntity);
+        entityManager.refresh(programEntity);
+
+        return modelMapper.map(programEntity, Program.class);
+    }
 }

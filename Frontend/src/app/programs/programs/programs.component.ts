@@ -44,5 +44,9 @@ export class ProgramsComponent implements OnInit {
   onProgramDeleted(programId: number) {
     this.myPrograms = this.myPrograms.filter(program => program.id !== programId);
   }
+
+  onProgramFinished(programId: number) {
+
+  }
 }
 

@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.ip.fitzone.base.CrudController;
+import org.unibl.etf.ip.fitzone.exceptions.NotFoundException;
 import org.unibl.etf.ip.fitzone.models.dto.Program;
 import org.unibl.etf.ip.fitzone.models.dto.UserHasProgram;
 import org.unibl.etf.ip.fitzone.models.requests.ProgramRequest;
@@ -33,5 +34,10 @@ public class ProgramController extends CrudController<Integer, ProgramRequest, P
     @PostMapping("/new")
     public Program  CreateProgram(@RequestBody ProgramRequest programRequest){
         return programService.createProgram(programRequest);
+    }
+
+    @GetMapping("/finish/{id}")
+    public Program finsishProgram(@PathVariable Integer id) throws NotFoundException {
+        return programService.finsishProgram(id);
     }
 }

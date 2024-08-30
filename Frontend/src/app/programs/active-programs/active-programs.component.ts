@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Program } from '../../models/program.model';
 import { Image } from '../../models/image.model';
+import { ProgramService } from '../../services/program/program.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-active-programs',
@@ -9,6 +11,8 @@ import { Image } from '../../models/image.model';
 })
 export class ActiveProgramsComponent {
   @Input() program!: Program;
+
+  constructor(private programService: ProgramService, private snackBar: MatSnackBar) { }
   getProfileImage(images: Image[]): string {
 
     let image: string = '';

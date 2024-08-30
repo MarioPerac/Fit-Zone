@@ -5,6 +5,8 @@
             <img [src]="getProfileImage(program.images)" class="profile-img">
             <p>Price: {{ program.price }} $</p>
             <p>Level: {{ program.level }}</p>
+            <p>Status: {{ program.isActive ? "Available" : "Finished"}}</p>
+            <button mat-flat-button color="primary" *ngIf="program.isActive" (click)="onFinishClick()">Finish</button>
             <button mat-flat-button color="primary" (click)="onDeleteClick()">Delete</button>
         </mat-card-content>
     </mat-card>

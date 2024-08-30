@@ -15,5 +15,6 @@ public class Program {
     private Integer price;
     private String level;
     private Integer duration;
+    private Boolean isActive;
     private List<Image> images;
 }

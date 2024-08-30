@@ -10,6 +10,7 @@ export class Program {
     price: number;
     level: string;
     duration: number;
+    isActive: boolean;
     images: Image[];
 
     constructor(
@@ -21,6 +22,7 @@ export class Program {
         price: number,
         level: string,
         duration: number,
+        isActive: boolean,
         images: Image[]
     ) {
         this.id = id;
@@ -31,6 +33,7 @@ export class Program {
         this.price = price;
         this.level = level;
         this.duration = duration;
+        this.isActive = isActive;
         this.images = images;
     }
 }

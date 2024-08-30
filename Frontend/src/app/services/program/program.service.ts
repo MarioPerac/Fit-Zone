@@ -15,6 +15,10 @@ export class ProgramService {
 
   constructor(private http: HttpClient) { }
 
+  finishProgram(id: number) {
+    return this.http.get<Program>(this.apiUrl + "/finish/" + id)
+  }
+
   delete(id: number) {
     return this.http.delete(this.apiUrl + "/" + id);
   }
