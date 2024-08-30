@@ -23,11 +23,22 @@ export class HomeComponent implements OnInit {
   }
 
   loadPrograms(page: number = 0): void {
-    this.programService.getProgramsToUser(this.loginService.activeUser!.username, page, this.pageSize).subscribe(response => {
-      this.usersHavePrograms = response.content;
-      this.totalItems = response.totalElements;
-      this.currentPage = response.number;
-    });
+
+    if (!this.loginService.signedIn) {
+
+      this.programService.getProgramsToUser("unsigned", page, this.pageSize).subscribe(response => {
+        this.usersHavePrograms = response.content;
+        this.totalItems = response.totalElements;
+        this.currentPage = response.number;
+      });
+    }
+    else {
+      this.programService.getProgramsToUser(this.loginService.activeUser!.username, page, this.pageSize).subscribe(response => {
+        this.usersHavePrograms = response.content;
+        this.totalItems = response.totalElements;
+        this.currentPage = response.number;
+      });
+    }
   }
 
   onPageChange(event: any): void {
@@ -37,6 +48,7 @@ export class HomeComponent implements OnInit {
 
 
   openDetails(userHasProgram: UserHasProgram) {
+
     this.router.navigate(["/program", userHasProgram.program.id], { state: { userHasProgram } });
   }
 }

@@ -6,13 +6,14 @@
     <span class="example-spacer"></span>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="onHomeClick()">Home</button>
-        <button mat-menu-item (click)="onProfileClick()">Profile</button>
-        <button mat-menu-item (click)="onNewProgramClick()">New Program</button>
-        <button mat-menu-item (click)="onProgramsClick()">Programs</button>
-        <button mat-menu-item (click)="onChatsClick()">Chats</button>
-        <button mat-menu-item (click)="onConsultingClick()">Consulting</button>
+        <button mat-menu-item *ngIf="loginService.signedIn" (click)="onProfileClick()">Profile</button>
+        <button mat-menu-item *ngIf="loginService.signedIn" (click)="onNewProgramClick()">New Program</button>
+        <button mat-menu-item *ngIf="loginService.signedIn" (click)="onProgramsClick()">Programs</button>
+        <button mat-menu-item *ngIf="loginService.signedIn" (click)="onChatsClick()">Chats</button>
+        <button mat-menu-item *ngIf="loginService.signedIn" (click)="onConsultingClick()">Consulting</button>
         <button mat-menu-item (click)="onRssClick()">Rss</button>
         <button mat-menu-item (click)="onExercisesClick()">Exercises</button>
-        <button mat-menu-item (click)="onLogoutClick()">Logout</button>
+        <button mat-menu-item *ngIf="loginService.signedIn" (click)="onLogoutClick()">Logout</button>
+        <button mat-menu-item *ngIf="!loginService.signedIn" (click)="onLogInClick()">Log in</button>
     </mat-menu>
 </mat-toolbar>

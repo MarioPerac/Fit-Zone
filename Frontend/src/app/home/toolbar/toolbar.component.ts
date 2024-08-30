@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ToolbarComponent {
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(public loginService: LoginService, private router: Router) { }
 
   onLogoutClick() {
     this.loginService.activeUser = null;
@@ -46,5 +46,9 @@ export class ToolbarComponent {
   }
   onExercisesClick() {
     this.router.navigate(['exercises']);
+  }
+
+  onLogInClick() {
+    this.router.navigate(['login']);
   }
 }

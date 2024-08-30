@@ -45,6 +45,6 @@ public class ProgramEntity implements BaseEntity<Integer> {
     @Column(name = "duration")
     private Integer duration;
 
-    @OneToMany(mappedBy = "programId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "programId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<ImageEntity> images;
 }

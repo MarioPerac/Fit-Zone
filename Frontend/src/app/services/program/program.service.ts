@@ -15,13 +15,17 @@ export class ProgramService {
 
   constructor(private http: HttpClient) { }
 
+  delete(id: number) {
+    return this.http.delete(this.apiUrl + "/" + id);
+  }
+
   getPrograms(): Observable<Program[]> {
     return this.http.get<Program[]>(this.apiUrl);
   }
 
-  createProgram(program: ProgramRequest): Observable<ProgramRequest> {
+  createProgram(program: ProgramRequest): Observable<Program> {
     const createUrl = this.apiUrl + "/new";
-    return this.http.post<ProgramRequest>(createUrl, program);
+    return this.http.post<Program>(createUrl, program);
   }
 
   getProgramsToUser(username: string, page: number, size: number): Observable<Page<UserHasProgram>> {

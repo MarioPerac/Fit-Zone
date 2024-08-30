@@ -65,10 +65,8 @@ export class NewProgramComponent implements OnInit {
     );
 
     this.programService.createProgram(program).subscribe({
-      next: (programReq: ProgramRequest) => {
-        // to do change
-
-        const id = programReq.id || 0;
+      next: (program: Program) => {
+        const id = program.id || 0;
         const programImages: ImageRequest[] = [];
         for (let index = 0; index < this.images.length; index++) {
           programImages.push(new ImageRequest(this.images[index], id, false));
@@ -76,15 +74,21 @@ export class NewProgramComponent implements OnInit {
         }
         programImages.push(new ImageRequest(form.value.image, id, true));
 
-        this.imageService.addImages(programImages).subscribe({
-          next: (images: Image[]) => {
-            this.snackBar.open('Program added', undefined, { duration: 2000 });
-          },
-          error: (err) => {
-            console.error('Error adding program images', err);
-            this.snackBar.open('Error during images adding', undefined, { duration: 2000 });
-          }
-        });
+        if (programImages.length == 0) {
+          this.snackBar.open('Program added', undefined, { duration: 2000 });
+        }
+        else {
+
+          this.imageService.addImages(programImages).subscribe({
+            next: (images: Image[]) => {
+              this.snackBar.open('Program added', undefined, { duration: 2000 });
+            },
+            error: (err) => {
+              console.error('Error adding program images', err);
+              this.snackBar.open('Error during images adding', undefined, { duration: 2000 });
+            }
+          });
+        }
       },
       error: (err) => {
         console.error('Error adding program', err);
@@ -119,6 +123,5 @@ export class NewProgramComponent implements OnInit {
     };
     reader.readAsDataURL(file);
   }
-
 
 }

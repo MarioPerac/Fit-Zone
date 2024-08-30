@@ -21,5 +21,4 @@ export class ExerciseService {
 
     return this.http.get<ExerciseModel[]>(this.apiUrl, { headers });
   }
-
 }

@@ -29,17 +29,25 @@ public class ProgramService extends CrudJpaService<ProgramEntity, Integer> {
         this.userHasProgramRepository = userHasProgramRepository;
     }
 
-    public void createProgram(ProgramRequest programRequest){
+    public Program createProgram(ProgramRequest programRequest){
         ProgramEntity programEntity = jpaRepository.saveAndFlush(modelMapper.map(programRequest, ProgramEntity.class));
         entityManager.refresh(programEntity);
 
         UserHasProgramEntity userHasProgramEntity = new UserHasProgramEntity(programRequest.getUsername(), programEntity.getId());
         userHasProgramEntity = userHasProgramRepository.saveAndFlush(userHasProgramEntity);
         entityManager.refresh(userHasProgramEntity);
+
+        return modelMapper.map(programEntity, Program.class);
     }
 
     public Page<UserHasProgram> getProgramsToUser(String username, Pageable pageable){
-        Page<UserHasProgramEntity> userHasProgramEntity = userHasProgramRepository.getByUserUsernameNot(username, pageable);
+        Page<UserHasProgramEntity> userHasProgramEntity = null;
+
+        if("unsigned".equals(username)){
+            userHasProgramEntity = userHasProgramRepository.findAll(pageable);
+        }else {
+           userHasProgramEntity = userHasProgramRepository.getByUserUsernameNot(username, pageable);
+        }
 
         List<UserHasProgram> programs = userHasProgramEntity.stream()
                 .map(u -> new UserHasProgram(modelMapper.map(u.getProgramEntity(), Program.class), u.getUserUsername(), u.getUserEntity().getName() + " " + u.getUserEntity().getSurname()))

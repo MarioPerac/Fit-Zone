@@ -1,6 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Program } from '../../models/program.model';
 import { Image } from '../../models/image.model';
+import { ProgramService } from '../../services/program/program.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { ProgramComponent } from '../../home/program/program.component';
 
 @Component({
   selector: 'app-my-programs',
@@ -9,7 +13,9 @@ import { Image } from '../../models/image.model';
 })
 export class MyProgramsComponent {
   @Input() program!: Program;
+  @Output() programDeleted = new EventEmitter<number>();
 
+  constructor(private programService: ProgramService, private snackBar: MatSnackBar, private router: Router) { }
   getProfileImage(images: Image[]): string {
 
     let image: string = '';
@@ -22,4 +28,11 @@ export class MyProgramsComponent {
 
     return image;
   };
+
+  onDeleteClick() {
+    this.programService.delete(this.program.id).subscribe(() => {
+      this.snackBar.open('Program deleted', undefined, { duration: 2000 });
+      this.programDeleted.emit(this.program.id);
+    });
+  }
 }

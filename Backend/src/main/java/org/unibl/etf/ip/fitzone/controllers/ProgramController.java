@@ -31,7 +31,7 @@ public class ProgramController extends CrudController<Integer, ProgramRequest, P
     }
 
     @PostMapping("/new")
-    public void CreateProgram(@RequestBody ProgramRequest programRequest){
-        programService.createProgram(programRequest);
+    public Program  CreateProgram(@RequestBody ProgramRequest programRequest){
+        return programService.createProgram(programRequest);
     }
 }

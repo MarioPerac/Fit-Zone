@@ -19,11 +19,11 @@ public class UserHasProgramEntity {
     @jakarta.persistence.Column(name = "program_id")
     private Integer programId;
 
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.REMOVE)
     @JoinColumn(name = "program_id", insertable = false, updatable = false)
     private ProgramEntity programEntity;
 
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_username", insertable = false, updatable = false)
     private UserEntity userEntity;
 

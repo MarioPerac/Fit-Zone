@@ -18,7 +18,7 @@ export class ProgramDetailsComponent implements OnInit {
   userHasProgram!: UserHasProgram;
   program!: Program;
 
-  constructor(private loginService: LoginService, private enrolmentService: EnrolmentService, private snackBar: MatSnackBar, private router: Router) { }
+  constructor(public loginService: LoginService, private enrolmentService: EnrolmentService, private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
     this.userHasProgram = history.state.userHasProgram;
