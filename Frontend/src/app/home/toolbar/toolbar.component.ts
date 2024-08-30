@@ -44,4 +44,7 @@ export class ToolbarComponent {
   onRssClick() {
     this.router.navigate(['rss-feed']);
   }
+  onExercisesClick() {
+    this.router.navigate(['exercises']);
+  }
 }

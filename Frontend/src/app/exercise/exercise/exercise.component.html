@@ -1,0 +1,17 @@
+<app-toolbar></app-toolbar>
+<div *ngIf="exercises && exercises.length">
+    <h1>Exercises Recommendation</h1>
+    <mat-card *ngFor="let exercise of exercises" class="exercise-card">
+        <mat-card-header>
+            <mat-card-title>{{ exercise.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p><strong>Type:</strong> {{ exercise.type }}</p>
+            <p><strong>Muscle:</strong> {{ exercise.muscle }}</p>
+            <p><strong>Equipment:</strong> {{ exercise.equipment }}</p>
+            <p><strong>Difficulty:</strong> {{ exercise.difficulty }}</p>
+            <p><strong>Instructions:</strong></p>
+            <p>{{ exercise.instructions }}</p>
+        </mat-card-content>
+    </mat-card>
+</div>

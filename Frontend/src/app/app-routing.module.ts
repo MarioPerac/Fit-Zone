@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: "rss-feed",
     loadChildren: () => import('./rss-feed/rss-feed.module').then(mod => mod.RssFeedModule)
+  },
+  {
+    path: "exercises",
+    loadChildren: () => import('./exercise/exercise.module').then(mod => mod.ExerciseModule)
   }
 ];
 
