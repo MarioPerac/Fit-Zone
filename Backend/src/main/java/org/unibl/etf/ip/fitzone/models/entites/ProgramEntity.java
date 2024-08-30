@@ -47,4 +47,7 @@ public class ProgramEntity implements BaseEntity<Integer> {
 
     @OneToMany(mappedBy = "programId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<ImageEntity> images;
+
+    @OneToMany(mappedBy = "programId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<CommentEntity> comments;
 }

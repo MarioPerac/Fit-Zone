@@ -3,6 +3,7 @@ import { LoginService } from '../../services/login/login.service';
 import { Route, Router } from '@angular/router';
 import { Program } from '../../models/program.model';
 import { UserService } from '../../services/user/user.service';
+import { Comment } from '../../models/comment.model';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { UserService } from '../../services/user/user.service';
 export class ProgramsComponent implements OnInit {
 
   myPrograms!: Program[];
+  comments: Comment[] = [];
   activePrograms!: Program[];
   finishedPrograms!: Program[];
   constructor(private loginService: LoginService, private userService: UserService, private router: Router) {
@@ -25,6 +27,14 @@ export class ProgramsComponent implements OnInit {
       next: (programs: Program[]) => {
 
         this.myPrograms = programs;
+        this.myPrograms.forEach(program => {
+          program.comments.forEach(comment => {
+            if (comment.answer == null) {
+              this.comments.push(comment);
+            }
+          })
+        });
+        console.log("ukupno" + this.comments.length);
       }
     });
 
@@ -45,8 +55,5 @@ export class ProgramsComponent implements OnInit {
     this.myPrograms = this.myPrograms.filter(program => program.id !== programId);
   }
 
-  onProgramFinished(programId: number) {
-
-  }
 }
 

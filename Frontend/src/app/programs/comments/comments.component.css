@@ -1,0 +1,48 @@
+.comments-section {
+    margin: 20px;
+}
+
+.comments-section h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.comment-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-card mat-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4A4A4A;
+    margin-bottom: 8px;
+}
+
+.comment-card mat-card-subtitle {
+    font-size: 14px;
+    color: #757575;
+    margin-bottom: 15px;
+}
+
+.comment-card mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.answer-input {
+    width: 100%;
+}
+
+.answer-input textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+button[mat-flat-button] {
+    align-self: flex-start;
+    margin-top: 10px;
+}

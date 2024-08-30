@@ -17,4 +17,5 @@ public class Program {
     private Integer duration;
     private Boolean isActive;
     private List<Image> images;
+    private List<Comment> comments;
 }

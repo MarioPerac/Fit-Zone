@@ -1,0 +1,16 @@
+<div class="comments-section">
+    <h3>Comments</h3>
+    <mat-card class="comment-card">
+        <mat-card-title>{{ comment.question }}</mat-card-title>
+        <mat-card-subtitle>{{ comment.userUsername}} - {{comment.date | date:'medium'}}</mat-card-subtitle>
+        <mat-card-content>
+
+            <div>
+                <mat-form-field class="answer-input" appearance="outline">
+                    <textarea matInput placeholder="Your Answer" [(ngModel)]="comment.answer"></textarea>
+                </mat-form-field>
+                <button mat-flat-button color="primary" (click)="submitAnswer(comment)">Submit Answer</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

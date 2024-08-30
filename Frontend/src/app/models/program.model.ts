@@ -1,4 +1,5 @@
 import { Category } from "./category.model";
+import { Comment } from "./comment.model";
 import { Image } from "./image.model";
 
 export class Program {
@@ -12,6 +13,7 @@ export class Program {
     duration: number;
     isActive: boolean;
     images: Image[];
+    comments: Comment[];
 
     constructor(
         id: number,
@@ -23,7 +25,8 @@ export class Program {
         level: string,
         duration: number,
         isActive: boolean,
-        images: Image[]
+        images: Image[],
+        comments: Comment[]
     ) {
         this.id = id;
         this.name = name;
@@ -35,5 +38,6 @@ export class Program {
         this.duration = duration;
         this.isActive = isActive;
         this.images = images;
+        this.comments = comments;
     }
 }

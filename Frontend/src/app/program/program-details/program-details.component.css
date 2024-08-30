@@ -24,8 +24,9 @@ mat-card {
     object-fit: cover;
 }
 
-.enrol-button {
-    margin: 20px auto 40px auto;
+.enrol-button,
+.contact-button {
+    margin: 20px auto;
     padding-left: 40px;
     padding-right: 40px;
     width: fit-content;
@@ -35,9 +36,41 @@ mat-card {
     font-size: 16px;
 }
 
-
 .profile-img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment-card {
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.comment-card mat-card-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.comment-card mat-card-subtitle {
+    font-size: 14px;
+    color: gray;
+}
+
+.add-comment-section {
+    margin-top: 20px;
+}
+
+.add-comment-section h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.comment-input {
+    width: 100%;
+    margin-bottom: 10px;
 }

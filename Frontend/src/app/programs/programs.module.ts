@@ -10,6 +10,7 @@ import { HomeModule } from '../home/home.module';
 import { MyProgramsComponent } from './my-programs/my-programs.component';
 import { ActiveProgramsComponent } from './active-programs/active-programs.component';
 import { FinishedProgramsComponent } from './finished-programs/finished-programs.component';
+import { CommentsComponent } from './comments/comments.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FinishedProgramsComponent } from './finished-programs/finished-programs
     MyProgramsComponent,
     MyProgramsComponent,
     ActiveProgramsComponent,
-    FinishedProgramsComponent
+    FinishedProgramsComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Enrolment } from '../../models/enrolment.model';
 import { UserHasProgram } from '../../models/userHasProgram.model';
 import { Router } from '@angular/router';
+import { Comment } from '../../models/comment.model';
+import { CommentService } from '../../services/comment/comment.service';
+import { CommentRequest } from '../../models/requests/comment-request.model';
+
 
 @Component({
   selector: 'app-program-details',
@@ -17,8 +21,11 @@ import { Router } from '@angular/router';
 export class ProgramDetailsComponent implements OnInit {
   userHasProgram!: UserHasProgram;
   program!: Program;
-
-  constructor(public loginService: LoginService, private enrolmentService: EnrolmentService, private snackBar: MatSnackBar, private router: Router) { }
+  newComment: string = '';
+  newAnswer: string = '';
+  showAnswerForm: boolean = false;
+  currentCommentId!: number;
+  constructor(public loginService: LoginService, private commentService: CommentService, private enrolmentService: EnrolmentService, private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
     this.userHasProgram = history.state.userHasProgram;
@@ -38,6 +45,11 @@ export class ProgramDetailsComponent implements OnInit {
     return image;
   };
 
+  openAnswerForm(commentId: number) {
+    this.currentCommentId = commentId;
+    this.showAnswerForm = true;
+  }
+
   buy() {
     this.enrolmentService.add(new EnrolmentRequest(this.loginService.activeUser!.username, this.program.id)).subscribe({
       next: (enrolment: Enrolment) => {
@@ -53,4 +65,16 @@ export class ProgramDetailsComponent implements OnInit {
     const friendName = this.userHasProgram.fullName;
     this.router.navigate(["chat/" + this.loginService.activeUser?.username + "/with/" + this.userHasProgram.username], { state: { friendName } });
   }
+
+  addComment() {
+    if (this.newComment != '') {
+      const commentReq = new CommentRequest(this.newComment, this.loginService.activeUser!.username, this.program.id);
+      this.commentService.question(commentReq).subscribe(() => {
+        this.snackBar.open('Question sent', undefined, { duration: 2000 });
+        this.newComment = '';
+      });
+    }
+  }
+
+
 }

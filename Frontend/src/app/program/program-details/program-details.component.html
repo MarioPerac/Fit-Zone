@@ -23,6 +23,25 @@
             </swiper-container>
             <button *ngIf="loginService.signedIn" class="enrol-button" mat-flat-button color="primary"
                 (click)="openChat()">Contact</button>
+
+            <div class="comments-section">
+                <h3>Comments</h3>
+                <mat-card *ngFor="let comment of program.comments" class="comment-card">
+                    <mat-card-title>{{ comment.question }}</mat-card-title>
+                    <mat-card-subtitle>{{ comment.userUsername}} - {{comment.date | date:'medium'}}</mat-card-subtitle>
+                    <mat-card-content>
+                        {{comment.answer}}
+                    </mat-card-content>
+                </mat-card>
+
+                <div *ngIf="loginService.signedIn" class="add-comment-section">
+                    <h4>Add a Comment</h4>
+                    <mat-form-field class="comment-input" appearance="outline">
+                        <textarea matInput placeholder="Your Comment" [(ngModel)]="newComment"></textarea>
+                    </mat-form-field>
+                    <button mat-flat-button color="primary" (click)="addComment()">Add</button>
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>

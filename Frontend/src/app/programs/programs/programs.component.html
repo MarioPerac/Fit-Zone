@@ -3,8 +3,7 @@
     <mat-tab-group>
         <mat-tab label="My Programs">
             <ng-container *ngFor="let program of myPrograms">
-                <app-my-programs [program]="program" (programDeleted)="onProgramDeleted($event)"
-                    (programFinished)="onProgramFinished($event)">
+                <app-my-programs [program]="program" (programDeleted)="onProgramDeleted($event)">
                 </app-my-programs>
             </ng-container>
         </mat-tab>
@@ -17,5 +16,11 @@
             <ng-container *ngFor="let program of finishedPrograms">
                 <app-finished-programs [program]="program"></app-finished-programs>
             </ng-container> </mat-tab>
+
+        <mat-tab label="Comments">
+            <ng-container *ngFor="let comment of comments">
+                <app-comments [comment]="comment"></app-comments>
+            </ng-container>
+        </mat-tab>
     </mat-tab-group>
 </div>
