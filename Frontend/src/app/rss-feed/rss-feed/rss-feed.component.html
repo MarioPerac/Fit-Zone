@@ -1,0 +1,15 @@
+<app-toolbar></app-toolbar>
+<div *ngIf="feed && feed.length">
+    <h1>RSS Feed</h1>
+    <mat-card *ngFor="let item of feed" class="rss-card">
+        <mat-card-header>
+            <mat-card-title>
+                <a [href]="item.link" target="_blank">{{ item.title }}</a>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ item.contentSnippet }}</p>
+            <p><strong>Categories:</strong> {{ item.categories.join(', ') }}</p>
+        </mat-card-content>
+    </mat-card>
+</div>

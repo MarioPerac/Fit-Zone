@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: "chat/:username/with/:friend",
     loadChildren: () => import('./chat/chat.module').then(mod => mod.ChatModule)
+  },
+  {
+    path: "rss-feed",
+    loadChildren: () => import('./rss-feed/rss-feed.module').then(mod => mod.RssFeedModule)
   }
 ];
 

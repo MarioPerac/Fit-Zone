@@ -1,8 +1,11 @@
 .user-card {
     max-width: 400px;
     margin: auto;
+    margin-top: 20px;
 }
 
-mat-card {
-    margin-top: 20px;
+
+.avatar {
+    width: 100px;
+    height: 100px;
 }

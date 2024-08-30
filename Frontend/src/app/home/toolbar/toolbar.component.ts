@@ -41,4 +41,7 @@ export class ToolbarComponent {
   onChatsClick() {
     this.router.navigate(["chats"]);
   }
+  onRssClick() {
+    this.router.navigate(['rss-feed']);
+  }
 }
